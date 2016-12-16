@@ -20,11 +20,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			// Set initial app size based on split screen state
 			this.con = dom.byId('plugins/benefits_explorer_prototype-0');
 			this.con1 = dom.byId('plugins/benefits_explorer_prototype-1');
-			/*if (this.con1 != undefined){
-				domStyle.set(this.con1, "width", "390px");
-			}else{
-				domStyle.set(this.con, "width", "390px");
-			}*/	
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
 			this.url = "http://dev.services2.coastalresilience.org:6080/arcgis/rest/services/Water_Blueprint/BenefitsExplorer/MapServer";
