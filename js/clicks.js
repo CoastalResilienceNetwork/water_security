@@ -15,23 +15,19 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				t.map.on('resize',lang.hitch(t,function(){
 					t.clicks.updateAccord(t);
 				}))								
-				// track when info window is closed
-				$('.sidebar-button-bottom button').on('click',lang.hitch(t,function(){
-					t.clicks.updateAccord(t);
-				}));	
 				// leave the get help section
-				$('#' + t.id + 'getHelpBtn').on('click',lang.hitch(t,function(c){
+				$('#' + t.id + 'be_getHelpBtn').on('click',lang.hitch(t,function(c){
 					$('#' + t.id + 'be_infoAccord').hide();
 					$('#' + t.id + 'be_mainAccord').show();
-					$('#' + t.id + 'getHelpBtnWrap').hide();
-					$('#' + t.id + 'getHelpBtn').html('Back to Benefits Explorer');
+					$('#' + t.id + 'be_getHelpBtnWrap').hide();
+					$('#' + t.id + 'be_getHelpBtn').html('Back to Benefits Explorer');
 					t.clicks.updateAccord(t);
 				}));
 				// info icon clicks
 				$('#' + t.id + ' .be_minfo').on('click',lang.hitch(t,function(c){
 					$('#' + t.id + 'be_mainAccord').hide();
 					$('#' + t.id + 'be_infoAccord').show();
-					$('#' + t.id + 'getHelpBtnWrap').show();
+					$('#' + t.id + 'be_getHelpBtnWrap').show();
 					var ben = c.target.id.split("-").pop();
 					t.clicks.updateAccord(t);	
 					$('#' + t.id + 'be_infoAccord .' + ben).trigger('click');
@@ -122,12 +118,12 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					q.where = t.exp1;
 					qt.executeForCount(q,function(count){
 						var layerDefinitions = [];
-						layerDefinitions[1] = exp;
+						layerDefinitions[5] = exp;
 						if (count > 0){
-							layerDefinitions[0] = t.exp1;	
-							t.obj.visibleLayers = [0,1,2];
+							layerDefinitions[4] = t.exp1;	
+							t.obj.visibleLayers = [4,5,6];
 						}else{
-							t.obj.visibleLayers = [1,2];
+							t.obj.visibleLayers = [5,6];
 						}
 						t.dynamicLayer.setLayerDefinitions(layerDefinitions);
 						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);						
@@ -135,12 +131,12 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				}else{	
 					if (exp.length == 0){
 						exp = "OBJECTID < 0";
-						t.obj.visibleLayers = [2];
+						t.obj.visibleLayers = [6];
 					}else{
-						t.obj.visibleLayers = [1,2];
+						t.obj.visibleLayers = [5,6];
 					}		
 					var layerDefinitions = [];		
-					layerDefinitions[1] = exp;	
+					layerDefinitions[5] = exp;	
 					t.dynamicLayer.setLayerDefinitions(layerDefinitions);
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				}

@@ -31,7 +31,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				var sym = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(
 					SimpleLineSymbol.STYLE_SOLID, new Color([0,0,255]), 2 ), new Color([0,0,0,0.1])
 				);
-				t.basinFl = new FeatureLayer(t.url + "/1", { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
+				t.basinFl = new FeatureLayer(t.url + "/5", { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
 				t.basinFl.setSelectionSymbol(sym);
 				t.map.addLayer(t.basinFl);
 				t.basinFl.on('selection-complete', lang.hitch(t,function(evt){

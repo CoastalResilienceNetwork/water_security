@@ -1,7 +1,7 @@
 body.be_waiting * {
     cursor: progress;
 }
-.dflex{
+.be_dflex{
 	display:flex;
 	flex-direction:column;
 }		
@@ -279,14 +279,14 @@ abbr.search-choice-close {
 .be_a{
 	color:blue !important; margin:0 !important;
 }	
-.getHelpBtnWrap{
+.be_getHelpBtnWrap{
     background-color: #eee; padding:10px 12px;	
 }	
-.getHelpBtn{
+.be_getHelpBtn{
 	background-color:#26648E; font-size:1.5rem; line-height:1.5; padding:.6rem 1.4rem; 
     border:1px solid #ddd; text-align:center; cursor:pointer; color:#eee; border-radius:3px;
 }	
-.getHelpBtn:hover{
+.be_getHelpBtn:hover{
 	background-color:#35a1ab;	
 }	
 
