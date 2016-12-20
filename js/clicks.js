@@ -114,7 +114,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 						}	
 					});
 					var q = new Query();
-					var qt = new QueryTask(t.url + '/0');
+					var qt = new QueryTask(t.url + '/4');
 					q.where = t.exp1;
 					qt.executeForCount(q,function(count){
 						var layerDefinitions = [];
@@ -127,7 +127,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 						}
 						t.dynamicLayer.setLayerDefinitions(layerDefinitions);
 						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);						
-					});
+					}); 
 				}else{	
 					if (exp.length == 0){
 						exp = "OBJECTID < 0";
@@ -141,7 +141,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				}
 				var query = new Query();
-				var queryTask = new QueryTask(t.url + '/0');
+				var queryTask = new QueryTask(t.url + '/4');
 				query.where = exp;
 				queryTask.executeForCount(query,function(count){
 					var cnt = t.clicks.numberWithCommas(count)
