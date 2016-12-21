@@ -188,10 +188,12 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 	</div>
 	<h3 class='be_largeHeader'> View Supporting Data</h3>
 	<div id='supDataWrap' class='be_sectionWrap be_hide'>
+		<div class='be_lineHeader'>Click below to view supporting data<img src='plugins/benefits_explorer_prototype/images/info.png' alt='show supporting data info' class='be_minfo' id='-infoSupData'></div>
 		<div class='be_bensWrap'>
-			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='temp'>Placeholder for supporing layer 1</div></div>
-			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='temp'>Placeholder for supporing layer 2</div></div>
-			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='temp'>Placeholder for supporing layer 3</div></div>
+			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-0'>Freshwater Rarity-weighted Richness</div></div>
+			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-1'>Terrestrial Rarity-weighted Richness</div></div>
+			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-2'>Avoided Regional Extinctions (Number of species)</div></div>
+			<div class='be_cbSupWrap'><div class='be_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-3'>Proportion of Natural Land Cover Needed to Meet Aichi Biodiversity Target 11</div></div>
 		</div>	
 	</div>
 </div>
@@ -265,6 +267,25 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div class='be_dlHeader'>Total Annual Excess Nitrogen Application</div>
 		<p>
 			Estimated total potential excess nitrogen loading per year into adjacent waterbodies. (Source data: EarthStat total fertilizer balance data; West et al., 2014)
+		</p>
+	</div>	
+	<h3 class='infoSupData'>Supporting Data</h3>
+	<div class='be_exWrap'>
+		<div class='be_dlHeader'>Freshwater Rarity-weighted Richness</div>
+		<p>
+			Freshwater ecoregions summarized by rarity-weighted richness (calculated as a combination of number of species and relative rarity of those species).  Highest biodiversity values are in the first quartile and lowest are in the fourth.  (Source data: Abell et al. 2011)
+		</p>
+		<div class='be_dlHeader'>Terrestrial Rarity- weighted Richness</div>
+		<p>
+			Terrestrial ecoregions summarized by rarity-weighted richness (calculated as a combination of number of species and relative rarity of those species).  Highest biodiversity values are in the first quartile and lowest are in the fourth.  (Source data: Abell et al. 2011)
+		</p>
+		<div class='be_dlHeader'>Avoided Regional Extinctions (Number of Species)</div>
+		<p>
+			Number of projected avoided regional species extinctions by terrestrial ecoregion. Predictions are based on species area relationship models and changes in land use through reforestation and restoration opportunities that intersect urban source watershed within a terrestrial ecoregion. (Source data: WRI 2014; Hoskins et al. 2016; Chaudhary et al. 2015; BirdLife International and NatureServe 2015; IUCN 2016)
+		</p>
+		<div class='be_dlHeader'>Proportion of Natural Land Cover Needed to Meet Aichi Biodiversity Target 11</div>
+		<p>
+			Countries that could meet Aichi Biodiversity Target 11 (at least 17% of land and inland waters protected) if implementing land protection as a source water protection activity outside existing protected areas.  The different levels indicate the percentage of unprotected natural land cover within urban source watershed, by country, that would need protection to meet the goal.  (Source data: IUCN and UNEP-WCMC 2016).
 		</p>
 	</div>	
 </div>	

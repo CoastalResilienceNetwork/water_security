@@ -54,6 +54,37 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 						$('#' + t.id + ben + '-unit').hide();
 					}	
 				}));	
+				// Sup data CB Clicks
+				$('#' + t.id + 'supDataWrap .be_cbSupWrap').on('click',lang.hitch(t,function(c){
+					var val = "";
+					// if they click a label toggle the checkbox
+					if (c.target.checked == undefined){
+						$(c.currentTarget.children[0].children[0]).prop("checked", !$(c.currentTarget.children[0].children[0]).prop("checked") )	
+						val = $(c.currentTarget.children[0].children[0]).val()
+					}else{
+						val = c.target.value;
+					}	
+					var lyr = Number( val.split("-").pop() )
+					$('#' + t.id + 'supDataWrap .be_pointer').each(lang.hitch(t,function(i,v){
+						if ( v.value != val ){
+							$(v).prop('checked', false)
+							var rl = Number( v.value.split("-").pop() )
+							var index = t.obj.visibleLayers.indexOf(rl);
+							if (index > -1) {
+								t.obj.visibleLayers.splice(index, 1);
+							}
+						}
+					}));
+					if ($(c.currentTarget.children[0].children[0]).prop('checked') === true){
+						t.obj.visibleLayers.push(lyr);
+					}else{
+						var index = t.obj.visibleLayers.indexOf(lyr);
+						if (index > -1) {
+							t.obj.visibleLayers.splice(index, 1);
+						}
+					}	
+					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+				}));	
 				// Standing Carbon range slider
 				$('#' + t.id + '-standingc').slider({range:true, min:0, max:6600, values:[0,6600], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
 				// Forest Loss range slider

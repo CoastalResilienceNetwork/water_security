@@ -12,7 +12,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Benefits Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'small',	
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'custom', width:360,	
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			// Access framework parameters
@@ -31,7 +31,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				this.map.removeLayer(this.dynamicLayer);
 				this.map.removeLayer(this.basinFl);
 				this.map.graphics.clear();
-				$('.plugin-infographic .sidebar-button-bottom').children('button').html('Get Started');
+				
 			}
 		},
 		// Called after hibernate at app startup. Calls the render function which builds the plugins elements and functions.   
@@ -41,7 +41,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				this.render();
 				// Hide the print button until a hex has been selected
 				$(this.printButton).hide();
-				this.dynamicLayer.setVisibility(true);
 			}else{
 				this.map.addLayer(this.dynamicLayer);
 				this.clicks.updateAccord(this);
