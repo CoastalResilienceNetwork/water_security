@@ -11,15 +11,12 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			$, content, ui, esriapi, clicks, barChart, hbar ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
-		toolbarName: "Benefits Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'custom', width:360,	
+		toolbarName: "Water Security Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'small',	
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			// Access framework parameters
 			declare.safeMixin(this, frameworkParameters);
-			// Set initial app size based on split screen state
-			this.con = dom.byId('plugins/benefits_explorer_prototype-0');
-			this.con1 = dom.byId('plugins/benefits_explorer_prototype-1');
 			// Define object to access global variables from JSON object. Only add variables to varObject.json that are needed by Save and Share. 
 			this.obj = dojo.eval("[" + obj + "]")[0];	
 			this.url = "http://dev.services2.coastalresilience.org:6080/arcgis/rest/services/Water_Blueprint/BenefitsExplorer_proto/MapServer";

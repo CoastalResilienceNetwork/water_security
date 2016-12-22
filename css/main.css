@@ -224,11 +224,11 @@ abbr.search-choice-close {
 .be_cbSupWrap{
 	font-size:14pt; text-align:left; display:inline-block; margin-top:5px;
 }
-.be_cbLabel{
+.se_cbLabel{
 	display:inline-block; margin-left:2px; font-size:1.4rem; padding:2px 0px 2px 17px; vertical-align:middle; text-align:left; color:#000; 
 	text-indent:-17px; cursor:pointer; margin-right:10px;
 }
-.be_cbLabel span{
+.se_cbLabel span{
 	text-indent:0px; font-size:1.3rem;
 }	
 .be_pointer{
@@ -258,7 +258,7 @@ abbr.search-choice-close {
 .be_graphWrap{
 	margin-bottom:10px;
 }	
-.be_minfo{
+.se_minfo{
 	margin-bottom:-2px; margin-left:3px; cursor:pointer;
 }	
 .content .plugin-container-outer .plugin-container{
@@ -279,14 +279,14 @@ abbr.search-choice-close {
 .be_a{
 	color:blue !important; margin:0 !important;
 }	
-.be_getHelpBtnWrap{
+.se_getHelpBtnWrap{
     background-color: #eee; padding:10px 12px;	
 }	
-.be_getHelpBtn{
+.se_getHelpBtn{
 	background-color:#26648E; font-size:1.5rem; line-height:1.5; padding:.6rem 1.4rem; 
     border:1px solid #ddd; text-align:center; cursor:pointer; color:#eee; border-radius:3px;
 }	
-.be_getHelpBtn:hover{
+.se_getHelpBtn:hover{
 	background-color:#35a1ab;	
 }	
 

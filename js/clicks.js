@@ -8,29 +8,29 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 			clickListener: function(t){
 				//make accrodians
 				$( function() {
-					$( "#" + t.id + "be_mainAccord" ).accordion({heightStyle: "fill"}); 
-					$( "#" + t.id + "be_infoAccord" ).accordion({heightStyle: "fill"});
+					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
+					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
 				});
 				// update accordians on window resize - map resize is much cleaner than window resize
 				t.map.on('resize',lang.hitch(t,function(){
 					t.clicks.updateAccord(t);
 				}))								
 				// leave the get help section
-				$('#' + t.id + 'be_getHelpBtn').on('click',lang.hitch(t,function(c){
-					$('#' + t.id + 'be_infoAccord').hide();
-					$('#' + t.id + 'be_mainAccord').show();
-					$('#' + t.id + 'be_getHelpBtnWrap').hide();
-					$('#' + t.id + 'be_getHelpBtn').html('Back to Benefits Explorer');
+				$('#' + t.id + 'getHelpBtn').on('click',lang.hitch(t,function(c){
+					$('#' + t.id + 'infoAccord').hide();
+					$('#' + t.id + 'mainAccord').show();
+					$('#' + t.id + 'getHelpBtnWrap').hide();
+					$('#' + t.id + 'getHelpBtn').html('Back to Water Security Explorer');
 					t.clicks.updateAccord(t);
 				}));
 				// info icon clicks
-				$('#' + t.id + ' .be_minfo').on('click',lang.hitch(t,function(c){
-					$('#' + t.id + 'be_mainAccord').hide();
-					$('#' + t.id + 'be_infoAccord').show();
-					$('#' + t.id + 'be_getHelpBtnWrap').show();
+				$('#' + t.id + ' .se_minfo').on('click',lang.hitch(t,function(c){
+					$('#' + t.id + 'mainAccord').hide();
+					$('#' + t.id + 'infoAccord').show();
+					$('#' + t.id + 'getHelpBtnWrap').show();
 					var ben = c.target.id.split("-").pop();
 					t.clicks.updateAccord(t);	
-					$('#' + t.id + 'be_infoAccord .' + ben).trigger('click');
+					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
 				}));		
 				// Benefit CB Clicks
 				$('#' + t.id + 'cbListener .be_cbBenWrap').on('click',lang.hitch(t,function(c){
@@ -180,8 +180,8 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				});
 			},
 			updateAccord: function(t){
-				$( "#" + t.id + "be_mainAccord" ).accordion('refresh');	
-				$( "#" + t.id +  "be_infoAccord" ).accordion('refresh');				
+				$( "#" + t.id + "mainAccord" ).accordion('refresh');	
+				$( "#" + t.id + "infoAccord" ).accordion('refresh');				
 			},
 			numberWithCommas: function(x){
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
