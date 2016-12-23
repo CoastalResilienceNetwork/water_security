@@ -5,81 +5,38 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 
 <!--Opening view of the app. Give a little background and instructions to get started-->
 <!--<div id='be_mainAccordWrap' class='be_mainAccordWrap'>-->
-<div id='mainAccord' class='be_mainAccord be_dflexChildren'>
-	<h3 id='hbbHeader' class='be_largeHeader'>Filter Cities by Source Watershed Attributes</h3>  
-	<div id='cbListener' class='be_sectionWrap'>
-		<div class='be_lineHeader3'><span id='basinCnt' style='font-weight:bold;'></span> of 1,761 Cities selected</div>
-		<div class='be_lineHeader'>Filter Cities by Pollutant Load in Source Watershed<img src='plugins/water_security/images/info.png' alt='show climate info' class='se_minfo' id='-infoPollu'></div> 
-		<div class='be_bensWrap'>
+<div id='mainAccord' class='sty_flex1 sty_hide'>
+	<h3 id='hbbHeader'>Filter Cities by Source Watershed Attributes</h3>  
+	<div id='filterCitiesWrap' class='be_sectionWrap'>
+		<div class='sty_blueHeader'><span id='basinCnt' style='font-weight:bold;'></span> of 1,761 Cities selected</div>
+		<div class='sty_underlineHeader'>Filter Cities by Pollutant Load in Source Watershed<img src='plugins/water_security/images/info.png' alt='show climate info' class='sty_infoIcon' id='-infoPollu'></div> 
+		<div class='sty_cbRangeWrap'>
 			<!-- Sediment -->
-			<div class='be_benefitWrap'>
-				<div class=	'be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='standingc'>Sediment <span id='standingc-range'></span> <span id='standingc-unit' class='be_hide'> million tonnes)</span></div></div>
-				<div class='be_rangeWrap'>
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'>0</div>	
+			<div class='sty_cbRangeWrap'>
+				<div class='sty_cbWrap'><div class='sty_cbLabel'><input type='checkbox' class='sty_cb' value='standingc'>Sediment <span id='standingc-range'></span> <span id='standingc-unit' class='sty_hide'> million tonnes)</span></div></div>
+				<div class='sty_rangeWrap'>
+					<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/benefits_explorer_prototype/images/red.png' alt='red circle'>0</div>	
 					<div id='-standingc' class='be_rslide'></div>
-					<div class='be_rightSlider'>6,600 Mt<img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'></div>	
+					<div class='sty_rightSlider'>6,600 Mt<img class='sty_goodBadPics' src='plugins/benefits_explorer_prototype/images/green.png' alt='green circle'></div>	
 				</div>	
 			</div>
 			<!-- Phosphorus -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='forloss'>Phosphorus <span id='forloss-range'></span> <span id='forloss-unit' class='be_hide'>km<sup>2</sup>)</span></div></div>
-				<div class='be_rangeWrap'>
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+			<div class='sty_cbRangeWrap'>
+				<div class='sty_cbWrap'><div class='sty_cbLabel'><input type='checkbox' class='sty_cb' value='forloss'>Phosphorus <span id='forloss-range'></span> <span id='forloss-unit' class='sty_hide'>km<sup>2</sup>)</span></div></div>
+				<div class='sty_rangeWrap'>
+					<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/benefits_explorer_prototype/images/green.png' alt='green circle'>0</div>	
 					<div id='-forloss' class='be_rslide'></div>
-					<div class='be_rightSlider'>20K km<sup>2</sup><img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+					<div class='sty_rightSlider'>20K km<sup>2</sup><img class='sty_goodBadPics' src='plugins/benefits_explorer_prototype/images/red.png' alt='red circle'></div>	
 				</div>	
 			</div>
 		</div>
-		<div class='be_lineHeader'>Filter Cities by Potential to Reduce Sediment in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='se_minfo' id='-infoRedSed'></div>
-		<div class='be_bensWrap'>
-			<!-- Freshwater Biodiversity Threats -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='freshbiot'>Freshwater Biodiversity Threat Index <span id='freshbiot-range'></span><span id='freshbiot-unit' class='be_hide'>)</span></div></div>
-				<div class='be_rangeWrap'>	
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
-					<div id='-freshbiot' class='be_rslide'></div>
-					<div class='be_rightSlider'>1<img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
-				</div>	
-			</div>
-			<!-- Imperiled terrestrial Species - count -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='terrsp'>Imperiled Terrestrial Species - count <span id='terrsp-range'></span><span id='terrsp-unit' class='be_hide'>)</span></div></div>
-				<div class='be_rangeWrap'>	
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
-					<div id='-terrsp' class='be_rslide'></div>
-					<div class='be_rightSlider'>220<img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
-				</div>	
-			</div>
+		<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Sediment in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoRedSed'></div>
+		<div class='sty_cbRangeWrap'>
+			
 		</div>
-		<div class='be_lineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='se_minfo' id='-infoHealth'></div>
-		<div class='be_bensWrap'>
-			<!-- Habitat for Pollinators &#38; Impacts on Vitamin A -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='vita'>Drop in Vitamin A Production w/o Pollination <span id='vita-range'></span><span id='vita-unit' class='be_hide'>%)</span></div></div>
-				<div class='be_rangeWrap'>		
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
-					<div id='-vita' class='be_rslide'></div>
-					<div class='be_rightSlider'>85%<img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
-				</div>	
-			</div>
-			<!-- Habitat for Pollinators and Impacts on Crop Yield Economic Output -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='agloss'>Agricultural Economic Value Lost w/o Pollination <span id='agloss-range'></span><span id='agloss-unit' class='be_hide'>%)</span></div></div>
-				<div class='be_rangeWrap'>
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
-					<div id='-agloss' class='be_rslide'></div>
-					<div class='be_rightSlider'>70%<img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
-				</div>	
-			</div>
-			<!-- Excess nitrogen -->
-			<div class='be_benefitWrap'>
-				<div class='be_cbBenWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='nitrogen'>Total Annual Excess Nitrogen Application <span id='nitrogen-range'></span><span id='nitrogen-unit' class='be_hide'> thousand tonnes)</span></div></div>
-				<div class='be_rangeWrap'>
-					<div class='be_leftSlider'><img class='be_updown' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
-					<div id='-nitrogen' class='be_rslide'></div>
-					<div class='be_rightSlider'>615 kt<img class='be_updown' src='plugins/water_security/images/red.png' alt='red circle'></div>	
-				</div>	
-			</div>
+		<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoHealth'></div>
+		<div class='sty_cbRangeWrap'>
+
 		</div>
 	</div>	
 	<h3 id='hydroSection' class='be_largeHeader'>View Cities and Source Watersheds</h3>
@@ -178,12 +135,12 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 	</div>
 	<h3 class='be_largeHeader'> View Supporting Data</h3>
 	<div id='supDataWrap' class='be_sectionWrap be_hide'>
-		<div class='be_lineHeader'>Click below to view supporting data<img src='plugins/water_security/images/info.png' alt='show supporting data info' class='se_minfo' id='-infoSupData'></div>
-		<div class='be_bensWrap'>
-			<div class='be_cbSupWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-0'>Freshwater Rarity-weighted Richness</div></div>
-			<div class='be_cbSupWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-1'>Terrestrial Rarity-weighted Richness</div></div>
-			<div class='be_cbSupWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-2'>Avoided Regional Extinctions (Number of species)</div></div>
-			<div class='be_cbSupWrap'><div class='se_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-3'>Proportion of Natural Land Cover Needed to Meet Aichi Biodiversity Target 11</div></div>
+		<div class='sty_underlineHeader'>Click below to view supporting data<img src='plugins/water_security/images/info.png' alt='show supporting data info' class='sty_infoIcon' id='-infoSupData'></div>
+		<div class='sty_cbRangeWrap'>
+			<div class='be_cbSupWrap'><div class='sty_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-0'>Freshwater Rarity-weighted Richness</div></div>
+			<div class='be_cbSupWrap'><div class='sty_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-1'>Terrestrial Rarity-weighted Richness</div></div>
+			<div class='be_cbSupWrap'><div class='sty_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-2'>Avoided Regional Extinctions (Number of species)</div></div>
+			<div class='be_cbSupWrap'><div class='sty_cbLabel'><input type='checkbox' class='be_pointer' value='lyr-3'>Proportion of Natural Land Cover Needed to Meet Aichi Biodiversity Target 11</div></div>
 		</div>	
 	</div>
 </div>

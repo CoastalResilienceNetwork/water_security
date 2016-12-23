@@ -33,7 +33,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
 				}));		
 				// Benefit CB Clicks
-				$('#' + t.id + 'cbListener .be_cbBenWrap').on('click',lang.hitch(t,function(c){
+				$('#' + t.id + 'filterCitiesWrap .sty_cbWrap').on('click',lang.hitch(t,function(c){
 					var ben = "";
 					// if they click a label toggle the checkbox
 					if (c.target.checked == undefined){
@@ -43,11 +43,11 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 						ben = c.target.value;
 					}	
 					if ($(c.currentTarget.children[0].children[0]).prop('checked') === true){
-						$(c.currentTarget).parent().find('.be_rangeWrap').slideDown();
+						$(c.currentTarget).parent().find('.sty_rangeWrap').slideDown();
 						var values = $('#' + t.id + '-' + ben).slider("option", "values");
 						$('#' + t.id + '-' + ben).slider('values', values); 
 					}else{
-						$(c.currentTarget).parent().find('.be_rangeWrap').slideUp();
+						$(c.currentTarget).parent().find('.sty_rangeWrap').slideUp();
 						t[ben] = "";
 						t.clicks.layerDefsUpdate(t);
 						$('#' + t.id + ben + '-range').html("")
@@ -139,7 +139,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					}	
 				}));
 				if (cnt == 1){
-					$('#' + t.id + 'cbListener input').each(function(i,v){
+					$('#' + t.id + 'filterCitiesWrap input').each(function(i,v){
 						if ($(v).prop('checked')){
 							t.exp1 = $(v).val() + " = -99";
 						}	
