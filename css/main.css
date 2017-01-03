@@ -187,4 +187,6 @@
 .se_getHelpBtn:hover{
 	background-color:#35a1ab;	
 }	
-
+.se_filterWrap{
+	margin-bottom:20px;
+}
