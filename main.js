@@ -5,10 +5,10 @@ require({
 // Bring in dojo and javascript api classes as well as varObject.json, js files, and content.html
 define([
 	"dojo/_base/declare", "framework/PluginBase", "dijit/layout/ContentPane", "dojo/dom", "dojo/dom-style", "dojo/dom-geometry", "dojo/_base/lang", "dojo/text!./obj.json", 
-	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/barChart', './js/horizontalBar'
+	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/barChart', './js/horizontalBar', './js/standards'
 ],
 function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj, 
-			$, content, ui, esriapi, clicks, barChart, hbar ) {
+			$, content, ui, esriapi, clicks, barChart, hbar, standards ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Water Security Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
@@ -40,7 +40,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				$(this.printButton).hide();
 			}else{
 				this.map.addLayer(this.dynamicLayer);
-				this.clicks.updateAccord(this);
+				this.standards.updateAccord(this);
 				this.map.addLayer(this.basinFl);
 				// on set state it calls activate twice. on the second call render is true so it call this else. layer infos isn't done yet so if you call setNavBtns it can't use layer infos
 				if (this.obj.stateSet == "no"){	
@@ -87,6 +87,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		render: function() {
 			//$('.basemap-selector').trigger('change', 3);
 			// BRING IN OTHER JS FILES
+			this.standards = new standards();
 			this.barChart = new barChart();
 			this.hbar = new hbar();
 			this.esriapi = new esriapi();
@@ -100,6 +101,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			// Get html from content.html, prepend appDiv.id to html element id's, and add to appDiv
 			var idUpdate = content.replace(/id='/g, "id='" + this.id);	
 			$('#' + this.id).html(idUpdate);
+			// Call standards startup
+			this.standards.startUp(this);
 			// Click listeners
 			this.clicks.clickListener(this);
 			// CREATE ESRI OBJECTS AND EVENT LISTENERS	

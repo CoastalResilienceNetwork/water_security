@@ -14,7 +14,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				t.selectedCity = '0';
 				t.noDataCities = '2';
 				// Add dynamic map service
-				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.7});
+				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.9});
 				t.map.addLayer(t.dynamicLayer);
 				if (t.obj.visibleLayers.length > 0){	
 					//t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
@@ -28,10 +28,14 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 					t.sed_yield = ""; 
 					t.p_yield = "";
 					t.cost_Sum_sed = "";
+					t.cost_PP_sed = "";
+					t.cost_pctGDP_sed = "";
+					t.cost_Sum_p = "";
+					t.cost_PP_p = "";
+					t.cost_pctGDP_p = "";
 					t.cost_Sum_sed_10 = [1100000000, 1.1];
 					t.cost_Sum_sed_20 = [3100000000, 3.1];
 					t.cost_Sum_sed_30 = [7510000000, 7.5];
-					t.cost_Sum_p = "";
 					t.cost_Sum_p_10 = [212000000000, 212];
 					t.cost_Sum_p_20 = [9600000000, 9.6];
 					t.cost_Sum_p_30 = [18200000000, 18.2];

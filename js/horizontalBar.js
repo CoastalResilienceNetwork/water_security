@@ -12,9 +12,9 @@ function ( declare, domStyle, lang, on, $, ui, Query, QueryTask, Extent, Spatial
 					var x = x = Math.round(v[1]/v[2]*100);
 					var n = "";
 					if (v[0] == 'freshbiot'){
-						n = t.clicks.numberWithCommas(Math.round(v[1]*10)/10);
+						n = t.standards.numberWithCommas(Math.round(v[1]*10)/10);
 					}else{	
-						n = t.clicks.numberWithCommas(Math.round(v[1]))
+						n = t.standards.numberWithCommas(Math.round(v[1]))
 					}	
 					$('#' + t.id + v[0] + '-bar').animate({left : "0%", width: x+"%"});					
 					if (n == -9.9 || n == -99){
