@@ -1,9 +1,9 @@
 define([
 	"esri/layers/ArcGISDynamicMapServiceLayer", "esri/geometry/Extent", "esri/SpatialReference", "esri/tasks/query" ,"esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", 
-	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol", "esri/graphic", "dojo/_base/Color", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui'
+	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol", "esri/graphic", "dojo/_base/Color", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui', "esri/tasks/RelationshipQuery", "esri/graphicsUtils",
 ],
 function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, QueryTask, declare, FeatureLayer, 
-			SimpleLineSymbol, SimpleFillSymbol, Graphic, Color, lang, on, $, ui) {
+			SimpleLineSymbol, SimpleFillSymbol, Graphic, Color, lang, on, $, ui, RelationshipQuery, graphicsUtils) {
         "use strict";
 
         return declare(null, {
@@ -13,11 +13,14 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				t.filteredCities = '1';
 				t.selectedCity = '0';
 				t.noDataCities = '2';
+				t.watersheds = '4'
+				// Create global layer definitions array
+				t.layerDefinitions = [];
 				// Add dynamic map service
-				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.9});
+				t.dynamicLayer = new ArcGISDynamicMapServiceLayer(t.url, {opacity:0.8});
 				t.map.addLayer(t.dynamicLayer);
 				if (t.obj.visibleLayers.length > 0){	
-					//t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				}else{
 					t.obj.visibleLayers.push(t.cities)
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
@@ -25,6 +28,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				t.dynamicLayer.on("load", lang.hitch(t, function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
 					// Start with empty expressions
+					t.selCity = "";
 					t.sed_yield = ""; 
 					t.p_yield = "";
 					t.cost_Sum_sed = "";
@@ -33,60 +37,107 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 					t.cost_Sum_p = "";
 					t.cost_PP_p = "";
 					t.cost_pctGDP_p = "";
-					t.cost_Sum_sed_10 = [1100000000, 1.1];
-					t.cost_Sum_sed_20 = [3100000000, 3.1];
-					t.cost_Sum_sed_30 = [7510000000, 7.5];
-					t.cost_Sum_p_10 = [212000000000, 212];
-					t.cost_Sum_p_20 = [9600000000, 9.6];
-					t.cost_Sum_p_30 = [18200000000, 18.2];
-					t.sed10 = "no";
-					t.sed20 = "no";
-					t.sed30 = "no";
+					t.wsDef = "";
 					t.clicks.layerDefsUpdate(t);
 					t.map.setMapCursor("pointer");
 				}));	
-				var sym = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(
-					SimpleLineSymbol.STYLE_SOLID, new Color([0,0,255]), 2 ), new Color([0,0,0,0.1])
-				);
-				t.basinFl = new FeatureLayer(t.url + "/1", { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
-				t.basinFl.setSelectionSymbol(sym);
-				t.map.addLayer(t.basinFl);
-				t.basinFl.on('selection-complete', lang.hitch(t,function(evt){
+				
+				var relatedQuery = new RelationshipQuery();
+				relatedQuery.outFields = ["OBJECTID"];
+				relatedQuery.relationshipId = 0;
+				
+				t.selCityFL = new FeatureLayer(t.url + "/" + t.cities, { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
+				t.selWsFL = new FeatureLayer(t.url + "/" + t.watersheds, { mode: FeatureLayer.MODE_SELECTION, outFields: ["*"] });
+				t.selCityFL.on('selection-complete', lang.hitch(t,function(evt){
+					var index = t.obj.visibleLayers.indexOf(t.selectedCity);
+					var index1 = t.obj.visibleLayers.indexOf(t.watersheds);
 					if (evt.features.length > 0){
-						$('#' + t.id + 'hydroHeader').html('Selected Hydrobasin Attributes');
-						var atts = evt.features[0].attributes;
-						var b = [['standingc',atts.standingc,6568.95], ['p_yield',atts.p_yield,19429.33], ['refor',atts.refor,65038.4], ['freshbiot',atts.freshbiot/10,1], 
-								 ['terrsp',atts.terrsp,219], ['vita',atts.vita,84.06], ['agloss',atts.agloss,68], ['nitrogen',atts.nitrogen,611.6]];
-						t.hbar.updateHbar(t,b);
-						
-						if ($('#' + t.id + 'cbListener').is(":visible")){
-							$('#' + t.id + 'hbbHeader').trigger('click');
-						};
-						if ($('#' + t.id + 'supDataWrap').is(":visible")){
-							$('#' + t.id + 'sdWrap').trigger('click');
-						};
-						if ($('#' + t.id + 'hydroWrap').is(":hidden")){
-							$('#' + t.id + 'hydroSection').trigger('click');
-						};
-						$('#' + t.id + 'graphWrap').slideDown();
+						t.atts = evt.features[0].attributes;
+						t.chartjs.updateCharts(t);
+						$('#' + t.id + 'selectCityHeader').hide();
+						$('#' + t.id + 'sc').html(t.atts.City_Name);
+						$('#' + t.id + 'citySelectedHeader').show();
+						t.selCity = "OBJECTID = " + t.atts.OBJECTID;
+						t.layerDefinitions[t.selectedCity] = t.selCity
+						t.dynamicLayer.setLayerDefinitions(t.layerDefinitions);
+						if (index == -1) {
+							t.obj.visibleLayers.push(t.selectedCity);
+							t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+						}									
+						$('#' + t.id + 'se_attWrap .se_attSpan').each(lang.hitch(t,function(i,v){
+							var field = v.id.split("-")[1];
+							var val = t.atts[field];
+							if ( isNaN(val) == false ){
+								if (val == -99){
+									val = "No Data"
+								}else{	
+									val = Math.round(val);
+									val = t.standards.numberWithCommas(val);
+								}	
+							}	
+							$('#' + v.id).html(val)
+						}));
+						t.wsDef = "";
+						relatedQuery.objectIds = [t.atts.OBJECTID];
+						t.selCityFL.queryRelatedFeatures(relatedQuery, lang.hitch(t,function(relatedRecords) {
+							var inStr = ""
+							$.each(relatedRecords[t.atts.OBJECTID].features, function(i,v){
+								if (i == 0){
+									inStr = v.attributes.OBJECTID;
+								}else{
+									inStr = inStr + ", " + v.attributes.OBJECTID;
+								}									
+							})
+							t.wsDef = "OBJECTID IN (" + inStr + ")";
+							t.layerDefinitions[t.watersheds] = t.wsDef;
+							t.dynamicLayer.setLayerDefinitions(t.layerDefinitions);
+							if (index1 == -1) {
+								t.obj.visibleLayers.push(t.watersheds)
+								t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
+							}
+							var q = new Query();
+							q.where = t.wsDef;
+							t.selWsFL.queryFeatures(q,lang.hitch(t,function(featureSet){
+								t.wsExt = graphicsUtils.graphicsExtent(featureSet.features);
+							}));
+						}))
+						$('#' + t.id + 'citySelSection').trigger('click');						
+						$('#' + t.id + 'chartWrap').slideDown();						
 					}else{
-						$('#' + t.id + 'hydroHeader').html('Click map to select a hydrobasin');
-						$('#' + t.id + 'graphWrap').slideUp();
-							
+						t.selCity = "";
+						t.wsDef = "";
+						if (index > -1) {
+							t.obj.visibleLayers.splice(index, 1);						
+						}
+						index1 = t.obj.visibleLayers.indexOf(t.watersheds);
+						if (index1 > -1) {
+							t.obj.visibleLayers.splice(index1, 1);							
+						}						
+						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);	
+						$('#' + t.id + 'citySelectedHeader').hide();
+						$('#' + t.id + 'selectCityHeader').show();
+						$('#' + t.id + 'chartWrap').slideUp();
 					}	
-				}));	
+				}));		
 				t.map.on("click", lang.hitch(t, function(evt) {
+					// Use pixels to grab pixels on point-click selections
+					// change the tolerence below to adjust how many pixels will be grabbed when clicking on a point or line
+					var tolerance = 10 * t.map.extent.getWidth()/t.map.width;;
 					var pnt = evt.mapPoint;
+					var ext = new esri.geometry.Extent(1,1, tolerance, tolerance, evt.mapPoint.spatialReference);
 					var q = new Query();
-					q.geometry = pnt;
-					t.basinFl.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
+					q.geometry = ext.centerAt(new esri.geometry.Point(evt.mapPoint.x,evt.mapPoint.y,evt.mapPoint.spatialReference));
+					t.selCityFL.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
 				}));
 				t.map.on("zoom-end", lang.hitch(t,function(e){
 					t.map.setMapCursor("pointer");
 				}));
 				t.map.on("update-end", lang.hitch(t,function(e){
 					t.map.setMapCursor("pointer");
-				}));				
+				}));	
+				$('#' + t.id + 'zoomToWs').on('click', lang.hitch(t,function(i,v){
+					t.map.setExtent(t.wsExt.getExtent().expand(2));
+				}))
 			}
 		});
     }

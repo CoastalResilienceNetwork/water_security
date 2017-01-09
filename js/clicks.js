@@ -50,7 +50,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					}	
 				}));	
 				// 10, 20, 30% toggle button clicks
-				$('#' + t.id + ' .sty_togBtn').on('click',lang.hitch(t,function(c){
+				$('#' + t.id + ' .se_perFil div').on('click',lang.hitch(t,function(c){
 					// Get percent selected
 					t.per = c.currentTarget.id.split("-")[1]
 					// Show and hide range sliders
@@ -71,7 +71,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 							$('#' + t.id + '-' + slide).slider('values', values); 
 						})) 	
 					}
-				}));				
+				}));		
 			},
 			// Handle range slider changes
 			sliderChange: function( event, ui, t ){
@@ -125,11 +125,18 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 						}	
 					}	
 				}));
-				var layerDefinitions = [];
+				t.layerDefinitions = [];
 				// If no layer defs have text (are set by sliders) just show cities and update city count to zero 
 				if (exp.length == 0){
 					$('#' + t.id + 'basinCnt').html("0"); 
 					t.obj.visibleLayers = [t.cities];
+					// Add city selected by map click if present
+					if (t.selCity.length > 0){
+						t.obj.visibleLayers.push(t.selectedCity)
+					}
+					if (t.wsDef.length > 0){
+						t.obj.visibleLayers.push(t.watersheds)
+					}
 					t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 				}
 				// At least one layer def (range slider value) was set
@@ -138,20 +145,29 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					var q = new Query();
 					var qt = new QueryTask(t.url + '/' + t.noDataCities);
 					q.where = exp1;
-					qt.executeForCount(q,function(count){
-						// Filtered cities get exp layer def no matter what
-						layerDefinitions[t.filteredCities] = exp;
+					qt.executeForCount(q,lang.hitch(t,function(count){
+						// Filtered and selcted cities get exp layer def no matter what
+						t.layerDefinitions[t.selectedCity] = t.selCity;
+						t.layerDefinitions[t.watersheds] = t.wsDef;
+						t.layerDefinitions[t.filteredCities] = exp;
 						// If there are null values selected, show the no data for cities layer and apply exp1
 						if(count > 0){
-							layerDefinitions[t.noDataCities] = exp1;	
+							t.layerDefinitions[t.noDataCities] = exp1;	
 							t.obj.visibleLayers = [t.noDataCities,t.filteredCities,t.cities];
 						}
 						// If the query returns zero null values, don't show the no data for cities layer
 						else{
 							t.obj.visibleLayers = [t.cities,t.filteredCities];		
 						}
+						// Add city selected by map click if present
+						if (t.selCity.length > 0){
+							t.obj.visibleLayers.push(t.selectedCity)
+						}
+						if (t.wsDef.length > 0){
+							t.obj.visibleLayers.push(t.watersheds)
+						}
 						// Set layers defs and visible layers
-						t.dynamicLayer.setLayerDefinitions(layerDefinitions);
+						t.dynamicLayer.setLayerDefinitions(t.layerDefinitions);
 						t.dynamicLayer.setVisibleLayers(t.obj.visibleLayers);
 						// Show the count of filtered (slider selected) cities 
 						var query = new Query();
@@ -161,7 +177,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 							var cnt = t.standards.numberWithCommas(count)
 							$('#' + t.id + 'basinCnt').html(cnt); 
 						});
-					})
+					}))
 				}		
 			}		
         });

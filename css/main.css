@@ -193,3 +193,40 @@
 .se_btnWrap div{
 	padding:2px 6px;
 }	
+.se_agLgnd{
+	background-color:rgba(161,18,37,0.7); border:1px solid rgba(161,18,37,0.7);
+}
+.se_proLgnd{
+	background-color:rgba(79,168,74,0.7); border:1px solid rgba(79,168,74,0.7);
+}
+.se_refLgnd{
+	background-color:rgba(64,140,180,0.7); border:1px solid rgba(64,140,180,0.7);
+}
+.se_lgndItemWrap{
+	display:flex; margin-right:6px; align-items:center;
+}
+.se_chartLgnd{
+	display:flex; font-size:1.2rem; margin:-10px 10px 4px 10px; justify-content:center; 
+}
+.se_lgndItem{
+	width:23px; height:14px; margin-right:5px;
+}
+.se_noData{
+	background: repeating-linear-gradient(45deg,#dedede,#dedede 5px,#eee 5px,#eee 10px); margin-right:4px; 
+	margin-left:2px; text-align:center; margin-bottom: 25px; padding-top:50px; height:150px;
+}
+.se_attLine{
+	font-size:1.4rem; padding-bottom:6px; padding-left:5px; text-indent:-10px; margin-left:5px;	
+}
+.se_attribute{
+	text-decoration:underline; 
+}
+.se_attSpan{
+	color: #21658c;
+}
+.se_attSpanSm{
+	color: #21658c; font-size: 1.2rem;
+}
+.se_attWrap{
+	margin-top:10px;
+}

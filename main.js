@@ -5,14 +5,14 @@ require({
 // Bring in dojo and javascript api classes as well as varObject.json, js files, and content.html
 define([
 	"dojo/_base/declare", "framework/PluginBase", "dijit/layout/ContentPane", "dojo/dom", "dojo/dom-style", "dojo/dom-geometry", "dojo/_base/lang", "dojo/text!./obj.json", 
-	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/barChart', './js/horizontalBar', './js/standards'
+	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/barChart', './js/horizontalBar', './js/standards', './js/chartjs'
 ],
 function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj, 
-			$, content, ui, esriapi, clicks, barChart, hbar, standards ) {
+			$, content, ui, esriapi, clicks, barChart, hbar, standards, chartjs ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Water Security Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'small',	
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'small', 	
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			// Access framework parameters
@@ -26,9 +26,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		hibernate: function () {
 			if (this.appDiv != undefined){
 				this.map.removeLayer(this.dynamicLayer);
-				this.map.removeLayer(this.basinFl);
-				this.map.graphics.clear();
-				
 			}
 		},
 		// Called after hibernate at app startup. Calls the render function which builds the plugins elements and functions.   
@@ -40,8 +37,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				$(this.printButton).hide();
 			}else{
 				this.map.addLayer(this.dynamicLayer);
-				this.standards.updateAccord(this);
-				this.map.addLayer(this.basinFl);
 				// on set state it calls activate twice. on the second call render is true so it call this else. layer infos isn't done yet so if you call setNavBtns it can't use layer infos
 				if (this.obj.stateSet == "no"){	
 					//this.navigation.setNavBtns(this);	
@@ -92,6 +87,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			this.hbar = new hbar();
 			this.esriapi = new esriapi();
 			this.clicks = new clicks();
+			this.chartjs = new chartjs();
 			// ADD HTML TO APP
 			// Define Content Pane as HTML parent		
 			this.appDiv = new ContentPane({style:'padding:0; color:#000; flex:1; display:flex; flex-direction:column;}'});
@@ -103,6 +99,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			$('#' + this.id).html(idUpdate);
 			// Call standards startup
 			this.standards.startUp(this);
+			// set up chartjs charts
+			this.chartjs.createChart(this);
 			// Click listeners
 			this.clicks.clickListener(this);
 			// CREATE ESRI OBJECTS AND EVENT LISTENERS	
