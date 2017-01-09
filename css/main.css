@@ -209,7 +209,7 @@
 	display:flex; font-size:1.2rem; margin:-10px 10px 4px 10px; justify-content:center; 
 }
 .se_lgndItem{
-	width:23px; height:14px; margin-right:5px;
+	height:14px; margin-right:5px;
 }
 .se_noData{
 	background: repeating-linear-gradient(45deg,#dedede,#dedede 5px,#eee 5px,#eee 10px); margin-right:4px; 
@@ -229,4 +229,10 @@
 }
 .se_attWrap{
 	margin-top:10px;
+}
+.se_smallFont{
+	font-size: 1.2rem;
+}
+.se_legendSpace{
+	margin-right:10px; margin-left:10px; margin-top:-10px; margin-bottom:10px;
 }
