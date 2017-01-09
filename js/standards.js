@@ -17,20 +17,30 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				}))								
 				// leave the get help section
 				$('#' + t.id + 'getHelpBtn').on('click',lang.hitch(t,function(c){
-					$('#' + t.id + 'infoAccord').hide();
-					$('#' + t.id + 'mainAccord').show();
-					$('#' + t.id + 'getHelpBtnWrap').hide();
-					$('#' + t.id + 'getHelpBtn').html('Back to Water Security Explorer');
+					if ( $('#' + t.id + 'mainAccord').is(":visible") ){
+						$('#' + t.id + 'infoAccord').show();
+						$('#' + t.id + 'mainAccord').hide();
+						$('#' + t.id + 'getHelpBtn').html('Back to Water Security Explorer');
+					}else{
+						$('#' + t.id + 'infoAccord').hide();
+						$('#' + t.id + 'mainAccord').show();
+						$('#' + t.id + 'getHelpBtn').html('Documentation');
+					}
+					
+					
+					//$('#' + t.id + 'getHelpBtnWrap').hide();
+					//$('#' + t.id + 'getHelpBtn').html('Back to Water Security Explorer');
 					t.standards.updateAccord(t);
 				}));
 				// info icon clicks
-				$('#' + t.id + ' .se_minfo').on('click',lang.hitch(t,function(c){
+				$('#' + t.id + ' .sty_infoIcon').on('click',lang.hitch(t,function(c){
 					$('#' + t.id + 'mainAccord').hide();
 					$('#' + t.id + 'infoAccord').show();
-					$('#' + t.id + 'getHelpBtnWrap').show();
+					//$('#' + t.id + 'getHelpBtnWrap').show();
 					var ben = c.target.id.split("-").pop();
 					t.standards.updateAccord(t);	
 					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
+					$('#' + t.id + 'getHelpBtn').html('Back to Water Security Explorer');
 				}));
 				// Handle Class changes on all togBtn clicks
 				$('#' + t.id + ' .sty_togBtn').on('click',function(c){		

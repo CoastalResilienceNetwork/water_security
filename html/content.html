@@ -5,7 +5,10 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 
 <!--Opening view of the app. Give a little background and instructions to get started-->
 <!--<div id='be_mainAccordWrap' class='be_mainAccordWrap'>-->
-<div id='mainAccord' class='sty_flex1'>
+<div id='getHelpBtnWrap' class='sty_getHelpBtnWrap'>
+	<div id='getHelpBtn' class='sty_getHelpBtn'>Start Using Water Security Explorer</div>
+</div>
+<div id='mainAccord' class='sty_flex1 sty_hide'>
 	<h3 id='hbbHeader'>Filter Cities by Source Watershed Attributes</h3>  
 	<div id='filterCitiesWrap' class='be_sectionWrap'>
 		<div class='sty_blueHeader'><span id='basinCnt' style='font-weight:bold;'></span> of 469 Cities Filtered</div>
@@ -65,7 +68,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 			</div>
 		</div>
 		<div class='se_filterWrap'>	
-			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoHealth'></div>
+			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoRedPho'></div>
 			<div class='sty_flexRow sty_1stIndent sty_topMargin'>Reduction Target:
 				<div class='sty_flexRowCenter se_btnWrap se_perFil'>
 					<div class='sty_togBtn sty_togBtnSel' id='-none-p'>None</div>
@@ -102,7 +105,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div class='sty_blueHeader' id='selectCityHeader' style='font-weight:bold;'>Click map to select a city</div>
 		<div class='sty_blueHeader sty_hide' id='citySelectedHeader' style='font-weight:bold; margin-top:6px; margin-bottom:5px;'><span id='sc'></span> - <span id='zoomToWs' class='wf_zoomToText'> Zoom to Watersheds</span></div>
 		<div id='chartWrap' class='sty_hide'>
-			<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities</div>
+			<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoAreaCostChart'></div>
 			<div class='sty_flexRow'>
 				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Area (km<sup>2</sup>)</div>
 				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Cost (USD/year)</div>
@@ -150,7 +153,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		</div>	
 	</div>
 </div>
-<div id='infoAccord' class='be_infoWrap be_dflexChildren sty_hide'>
+<div id='infoAccord'>
 	<h3>Documentation</h3>
 	<div class='be_exWrap'>
 		<p>
@@ -174,59 +177,19 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 	<h3 class='infoRedSed'>Potential to Reduce Sediment</h3>
 	<div class='be_exWrap'>
 		<p>
-			Strategic land management and protection can conserve habitat for terrestrial species and benefit aquatic 
-			species by improving water quality and flow reliability. The following data layers provide information on where biodiversity is threatened and 
-			where improvements in watershed health may benefit biodiversity conservation:
-		</p>
-		<div class='be_dlHeader'>Freshwater Biodiversity Threat Index</div>
-		<p>
-			Levels of threat to freshwater biodiversity within HydroBASINS normalized and standardized between zero and one. Some basins do not have average threat values due to insufficient coverage of the index data. (Source data: Vörösmarty et al., 2010)
-		</p>
-		<div class='be_dlHeader'>Imperiled Terrestrial Species</div>
-		<p>
-			Number of terrestrial species, including mammals, birds and amphibians, classified by the IUCN Red List as critically endangered, endangered or vulnerable. (Source data: BirdLife International and NatureServe 2015; IUCN 2016)
+			Pretentail to reduce sediment...
 		</p>
 	</div>	
-	<h3 class='infoHealth'>Human Health &#38; Well Being</h3>
+	<h3 class='infoRedPho'>Potential to Reduce Phosphorus</h3>
 	<div class='be_exWrap'>
 		<p>
-			Communities not only benefit from improved water security but also from improved watershed health overall. 
-			The following data layers show where land protection could maintain pollination services providing valuable micronutrient and crop yield benefits, 
-			and also identify places with the greatest need for reducing excess nitrogen in surface waters:
-		</p>
-		<div class='be_dlHeader'>Drop in Vitamin A Production w/o Pollination</div>
-		<p>
-			The estimated percent reduction in vitamin A production associated with reduced pollination services. Data are summarized in HydroBASINS currently experiencing moderate or severe vitamin A deficiency, and basins with no data are of low concern for vitamin A deficiency. (Source data: Klein et al., 2007; Monfreda et al., 2008; WHO 2009; FAO 2016)
-		</p>
-		<div class='be_dlHeader'>Agricultural Economic Value Lost w/o Pollination</div>
-		<p>
-			The estimated percent of total agricultural economic value lost with reduced pollination services. (Source data: Monfreda et al., 2008; FAO 2016)
-		</p>
-		<div class='be_dlHeader'>Total Annual Excess Nitrogen Application</div>
-		<p>
-			Estimated total potential excess nitrogen loading per year into adjacent waterbodies. (Source data: EarthStat total fertilizer balance data; West et al., 2014)
+			Pretentail to reduce phosphorus...
 		</p>
 	</div>	
-	<h3 class='infoSupData'>Supporting Data</h3>
+	<h3 class='infoAreaCostChart'>Area and Cost for Conservation Activities</h3>
 	<div class='be_exWrap'>
-		<div class='be_dlHeader'>Freshwater Rarity-weighted Richness</div>
 		<p>
-			Freshwater ecoregions summarized by rarity-weighted richness (calculated as a combination of number of species and relative rarity of those species).  Highest biodiversity values are in the first quartile and lowest are in the fourth.  (Source data: Abell et al. 2011)
+			Area and Cost for Conservation Activities...
 		</p>
-		<div class='be_dlHeader'>Terrestrial Rarity- weighted Richness</div>
-		<p>
-			Terrestrial ecoregions summarized by rarity-weighted richness (calculated as a combination of number of species and relative rarity of those species).  Highest biodiversity values are in the first quartile and lowest are in the fourth.  (Source data: Abell et al. 2011)
-		</p>
-		<div class='be_dlHeader'>Avoided Regional Extinctions (Number of Species)</div>
-		<p>
-			Number of projected avoided regional species extinctions by terrestrial ecoregion. Predictions are based on species area relationship models and changes in land use through reforestation and restoration opportunities that intersect urban source watershed within a terrestrial ecoregion. (Source data: WRI 2014; Hoskins et al. 2016; Chaudhary et al. 2015; BirdLife International and NatureServe 2015; IUCN 2016)
-		</p>
-		<div class='be_dlHeader'>Proportion of Natural Land Cover Needed to Meet Aichi Biodiversity Target 11</div>
-		<p>
-			Countries that could meet Aichi Biodiversity Target 11 (at least 17% of land and inland waters protected) if implementing land protection as a source water protection activity outside existing protected areas.  The different levels indicate the percentage of unprotected natural land cover within urban source watershed, by country, that would need protection to meet the goal.  (Source data: IUCN and UNEP-WCMC 2016).
-		</p>
-	</div>	
+	</div>		
 </div>	
-<div id='getHelpBtnWrap' class='se_getHelpBtnWrap sty_hide'>
-	<div id='getHelpBtn' class='se_getHelpBtn'>Start Using Water Security Explorer</div>
-</div>
