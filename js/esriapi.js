@@ -120,14 +120,16 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 					}	
 				}));		
 				t.map.on("click", lang.hitch(t, function(evt) {
-					// Use pixels to grab pixels on point-click selections
-					// change the tolerence below to adjust how many pixels will be grabbed when clicking on a point or line
-					var tolerance = 10 * t.map.extent.getWidth()/t.map.width;;
-					var pnt = evt.mapPoint;
-					var ext = new esri.geometry.Extent(1,1, tolerance, tolerance, evt.mapPoint.spatialReference);
-					var q = new Query();
-					q.geometry = ext.centerAt(new esri.geometry.Point(evt.mapPoint.x,evt.mapPoint.y,evt.mapPoint.spatialReference));
-					t.selCityFL.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
+					if (t.open == "yes"){
+						// Use pixels to grab pixels on point-click selections
+						// change the tolerence below to adjust how many pixels will be grabbed when clicking on a point or line
+						var tolerance = 10 * t.map.extent.getWidth()/t.map.width;;
+						var pnt = evt.mapPoint;
+						var ext = new esri.geometry.Extent(1,1, tolerance, tolerance, evt.mapPoint.spatialReference);
+						var q = new Query();
+						q.geometry = ext.centerAt(new esri.geometry.Point(evt.mapPoint.x,evt.mapPoint.y,evt.mapPoint.spatialReference));
+						t.selCityFL.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
+					}	
 				}));
 				t.map.on("zoom-end", lang.hitch(t,function(e){
 					t.map.setMapCursor("pointer");
