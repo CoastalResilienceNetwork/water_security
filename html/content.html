@@ -6,7 +6,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 <!--Opening view of the app. Give a little background and instructions to get started-->
 <!--<div id='be_mainAccordWrap' class='be_mainAccordWrap'>-->
 <div id='getHelpBtnWrap' class='sty_getHelpBtnWrap'>
-	<div id='getHelpBtn' class='sty_getHelpBtn'>Start Using Water Security Explorer</div>
+	<div id='getHelpBtn' class='sty_getHelpBtn'>Start Using Source Protection Explorer</div>
 </div>
 <div id='mainAccord' class='sty_flex1 sty_hide'>
 	<h3 id='hbbHeader'>Filter Cities by Source Watershed Attributes</h3>  
@@ -36,7 +36,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 			</div>
 		</div>
 		<div class='se_filterWrap'>
-			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Sediment in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoRedSed'></div>
+			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Sediment in Source Watershed<img src='plugins/water_security/images/info.png' alt='show pollution reduction info' class='sty_infoIcon' id='-infoRedPol'></div>
 			<div class='sty_flexRow sty_1stIndent sty_topMargin'>Reduction Target:
 				<div class='sty_flexRowCenter se_btnWrap se_perFil'> 
 					<div class='sty_togBtn sty_togBtnSel' id='-none-sed'>None</div>
@@ -68,7 +68,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 			</div>
 		</div>
 		<div class='se_filterWrap'>	
-			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoRedPho'></div>
+			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show pollution reduction info' class='sty_infoIcon' id='-infoRedPol'></div>
 			<div class='sty_flexRow sty_1stIndent sty_topMargin'>Reduction Target:
 				<div class='sty_flexRowCenter se_btnWrap se_perFil'>
 					<div class='sty_togBtn sty_togBtnSel' id='-none-p'>None</div>
@@ -105,7 +105,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div class='sty_blueHeader' id='selectCityHeader' style='font-weight:bold;'>Click map to select a city</div>
 		<div class='sty_blueHeader sty_hide' id='citySelectedHeader' style='font-weight:bold; margin-top:6px; margin-bottom:5px;'><span id='sc'></span> - <span id='zoomToWs' class='wf_zoomToText'> Zoom to Watersheds</span></div>
 		<div id='chartWrap' class='sty_hide'>
-			<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities<img src='plugins/water_security/images/info.png' alt='show biodiversity info' class='sty_infoIcon' id='-infoAreaCostChart'></div>
+			<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities</div>
 			<div class='sty_flexRow'>
 				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Area (km<sup>2</sup>)</div>
 				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Cost (USD/year)</div>
@@ -154,42 +154,46 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 	</div>
 </div>
 <div id='infoAccord'>
-	<h3>Documentation</h3>
-	<div class='be_exWrap'>
+	<h3 class='infoDoc'>Documentation</h3>
+	<div class='sty_explainWrap'>
 		<p>
-			The app allows users to...
+			This app enables users to explore how cities could improve the quality of their intake water by 
+			implementing conservation activities to reduce nonpoint pollution. The app depicts how forest protection, 
+			pastureland reforestation, and agricultural best-management practices (BMPs) can reduce sediment and 
+			phosphorus pollution for surface water intakes for 469 cities.
 		</p>
+		<p>
+			Most cities use water from multiple surface water sources. The data presented here represent average 
+			values across all source watersheds for a given city. Additionally, while many cities also rely upon 
+			groundwater sources, this app focuses only on surface water supplies. For more details on methodology, 
+			please refer to the <a href='plugins/benefits_explorer_prototype/images/MethodsDocumentation.pdf' target='_blank'>data documentation</a>
+			provided on this site.
+		</p>
+		<p>
+			Note that the cities mapped here include only those with explicitly surveyed water sources. In the report, 
+			<a href='http://www.nature.org/beyondthesource' target='_blank'>Beyond the Source</a>, we additionally model 
+			potential surface water sources for more than 3,500 additional cities.
+		</p>
+		<p>
 	</div> 
-	<h3 class='infoPollu'>Pollutant Load in Source Watershed</h3>
-	<div class='be_exWrap'>
+	<h3 class='infoPollu'>Pollutant Load in Source Watersheds</h3>
+	<div class='sty_explainWrap'>
 		<p>
-			By pollutant load we mean... The following data layers provide information on pollutant load:
+			Nonpoint pollution includes a wide array of pollutant types but two pollutants have particular relevance 
+			for urban source water protection: sediment and nutrients.
 		</p>
-		<div class='be_dlHeader'>Sediment</div>
 		<p>
-			Talk about sediment. (Source data: Author et al., 2016)
-		</p>
-		<div class='be_dlHeader'>Phosphorus</div>
-		<p class='be_explanations'>
-			Talk about phosphorus. (Source data: Author et al., 2016)
+			In practice, phosphorus and nitrogen loading are highly spatially correlated at large scales and the 
+			phosphorus results presented here are indicative of similar global spatial patterns for nitrogen loading.
 		</p>
 	</div>
-	<h3 class='infoRedSed'>Potential to Reduce Sediment</h3>
-	<div class='be_exWrap'>
+	<h3 class='infoRedPol'>Pollution Reduction Potential</h3>
+	<div class='sty_explainWrap'>
 		<p>
-			Pretentail to reduce sediment...
+			We consider three conservation practices relevant to source water protection: forest protection, pastureland 
+			reforestation and agricultural BMPs. For a given watershed, we estimate the area and cost of the optimal portfolio 
+			of conservation activities needed to reach a given reduction target for sediment or phosphorus (10%, 20%, or 30% 
+			reduction relative to baseline conditions). 
 		</p>
-	</div>	
-	<h3 class='infoRedPho'>Potential to Reduce Phosphorus</h3>
-	<div class='be_exWrap'>
-		<p>
-			Pretentail to reduce phosphorus...
-		</p>
-	</div>	
-	<h3 class='infoAreaCostChart'>Area and Cost for Conservation Activities</h3>
-	<div class='be_exWrap'>
-		<p>
-			Area and Cost for Conservation Activities...
-		</p>
-	</div>		
+	</div>			
 </div>	
