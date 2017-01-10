@@ -49,7 +49,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		deactivate: function () {
 			if (this.appDiv != undefined){
 				this.map.removeLayer(this.dynamicLayer);
-				console.log("m")
 			}	
 		},	
 		// Called when user hits 'Save and Share' button. This creates the url that builds the app at a given state using JSON. 
