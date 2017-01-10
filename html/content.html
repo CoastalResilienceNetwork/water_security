@@ -105,51 +105,55 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 		<div class='sty_blueHeader' id='selectCityHeader' style='font-weight:bold;'>Click map to select a city</div>
 		<div class='sty_blueHeader sty_hide' id='citySelectedHeader' style='font-weight:bold; margin-top:6px; margin-bottom:5px;'><span id='sc'></span> - <span id='zoomToWs' class='wf_zoomToText'> Zoom to Watersheds</span></div>
 		<div id='chartWrap' class='sty_hide'>
-			<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities</div>
-			<div class='sty_flexRow'>
-				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Area (km<sup>2</sup>)</div>
-				<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Cost (USD/year)</div>
-			</div>
-			<div class='sty_flexRow sty_topMargin' style='margin-left:-10px; align-items:stretch; '>
-				<div id='areaCh' class='sty_flex1'>	
-					<canvas id='areaChart' height='300'></canvas>
+			<div class='se_groupCharts'>
+				<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities</div>	
+				<div class='sty_flexRow'>
+					<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Area (km<sup>2</sup>)</div>
+					<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Cost (USD/year)</div>
 				</div>
-				<div id='areaNd' class='sty_flex1 se_noData sty_hide' style='margin-left:10px;'>No area data<br>for current selection</div>
-				<div id='costCh' class='sty_flex1' style='margin-right:4px; margin-left:2px;'>
-					<canvas id='costChart' height='300'></canvas>
+				<div class='sty_flexRow sty_topMargin' style='align-items:stretch; '>
+					<div id='areaCh' class='sty_flex1'>	
+						<canvas id='areaChart' height='300'></canvas>
+					</div>
+					<div id='areaNd' class='sty_flex1 se_noData sty_hide' style='margin-left:10px;'>No area data<br>for current selection</div>
+					<div id='costCh' class='sty_flex1' style='margin-right:4px; margin-left:2px;'>
+						<canvas id='costChart' height='300'></canvas>
+					</div>
+					<div id='costNd' class='sty_flex1 se_noData sty_hide'>No cost data<br>for current selection</div>
 				</div>
-				<div id='costNd' class='sty_flex1 se_noData sty_hide'>No cost data<br>for current selection</div>
-			</div>
-			<div class='sty_flexRowCenter se_legendSpace'>
-				<div class='sty_flexRowCenter sty_flex1'>
-					<div class='se_lgndItem se_agLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Agricultural BMPs</div>
+				<div class='sty_flexRowCenter se_legendSpace'>
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_agLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Agricultural BMPs</div>
+					</div>	
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_proLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Forest protection</div>
+					</div>
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_refLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Reforestation</div>
+					</div>	
 				</div>	
-				<div class='sty_flexRowCenter sty_flex1'>
-					<div class='se_lgndItem se_proLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Forest protection</div>
+				<div class='sty_flexRowCenter'>Pollutant:
+					<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
+						<div class='sty_togBtn sty_togBtnSel' id='-_sed'>Sediment</div>
+						<div class='sty_togBtn' id='-_p'>Phosphorus</div>
+					</div>
 				</div>
-				<div class='sty_flexRowCenter sty_flex1'>
-					<div class='se_lgndItem se_refLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Reforestation</div>
-				</div>	
-			</div>
-			<div class='sty_flexRowCenter'>Pollutant:
-				<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
-					<div class='sty_togBtn sty_togBtnSel' id='-_sed'>Sediment</div>
-					<div class='sty_togBtn' id='-_p'>Phosphorus</div>
-				</div>
-			</div>
-			<div class='sty_flexRowCenter'>Reduction Target:
-				<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
-					<div class='sty_togBtn sty_togBtnSel' id='-opt10_'>10%</div>
-					<div class='sty_togBtn' id='-opt20_'>20%</div>
-					<div class='sty_togBtn' id='-opt30_'>30%</div>					
+				<div class='sty_flexRowCenter'>Reduction Target:
+					<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
+						<div class='sty_togBtn sty_togBtnSel' id='-opt10_'>10%</div>
+						<div class='sty_togBtn' id='-opt20_'>20%</div>
+						<div class='sty_togBtn' id='-opt30_'>30%</div>					
+					</div>
 				</div>
 			</div>	
-			<div id='se_attWrap' class='se_attWrap'>
-				<div class='se_attLine'><span class='se_attribute'>Estimated city population</span>: <span id='-pop-att' class='se_attSpan'></span></div>
-				<div class='se_attLine'><span class='se_attribute'>Number of surface water sources</span>: <span id='-num_sources-att' class='se_attSpan'></span></div>
-				<div class='se_attLine'><span class='se_attribute'>Phosphorus pollutant load</span>: <span id='-p_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> tonnes/km<sup>2</sup>/year</div>
-				<div class='se_attLine'><span class='se_attribute'>Sediment pollutant load </span>: <span id='-sed_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> kg/km<sup>2</sup>/year</span></div>
-			</div>
+			<div class='se_groupAtts'>			
+				<div id='se_attWrap' class='se_attWrap'>
+					<div class='se_attLine'><span class='se_attribute'>Estimated city population</span>: <span id='-pop-att' class='se_attSpan'></span></div>
+					<div class='se_attLine'><span class='se_attribute'>Number of surface water sources</span>: <span id='-num_sources-att' class='se_attSpan'></span></div>
+					<div class='se_attLine'><span class='se_attribute'>Phosphorus pollutant load</span>: <span id='-p_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> tonnes/km<sup>2</sup>/year</div>
+					<div class='se_attLine'><span class='se_attribute'>Sediment pollutant load </span>: <span id='-sed_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> kg/km<sup>2</sup>/year</span></div>
+				</div>
+			</div>	
 		</div>	
 	</div>
 </div>
