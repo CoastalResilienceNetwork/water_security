@@ -52,6 +52,9 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 					var index = t.obj.visibleLayers.indexOf(t.selectedCity);
 					var index1 = t.obj.visibleLayers.indexOf(t.watersheds);
 					if (evt.features.length > 0){
+						if ( $('#' + t.id + 'mainAccord').is(':hidden') ){
+							$('#' + t.id + 'getHelpBtn').trigger('click');
+						} 
 						t.atts = evt.features[0].attributes;
 						t.chartjs.updateCharts(t);
 						$('#' + t.id + 'selectCityHeader').hide();
