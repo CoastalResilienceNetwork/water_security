@@ -124,22 +124,58 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 				t.myAreaChart.update();
 				t.myCostChart.update();
 			},
-			maxNumber: function(n){
-				var x = 0;
-				var y = 0;
-				if (n < 100){
-					x = n * .1 + n;
-					y = Math.ceil(x/2)*2;
+			maxNumber: function(num){
+				if(num< 1){
+					num = Math.ceil(num/.2)*.2;
 				}
-				if (n > 100){
-					x = n * .1 + n;
-					y = Math.ceil(x/5)*5;
+				else if(num> 1 && num<6){
+					num = Math.ceil(num/2)*2;
 				}
-				if (n > 100000){
-					x = n * .1 + n;
-					y = Math.ceil(x/10000)*10000;
+				else if(num> 6 && num<11){
+					num = Math.round(num + (num * .25))
+					num = Math.ceil(num/2)*2;
 				}
-				return y
+				else if(num> 11 && num<=50){
+					num = Math.round(num + (num * .5))
+					num = Math.ceil(num/5)*5;
+				}
+				else if(num>= 51 && num<=100){
+					num = Math.round(num + (num * .25))
+					num = Math.ceil(num/10)*10;
+				}
+				else if(num>= 101 && num<=500){
+					num = Math.round(num + (num * .20))
+					num = Math.ceil(num/50)*50;
+				}
+				else if(num>= 501 && num<=1000){
+					num = Math.round(num + (num * .15))
+					num = Math.ceil(num/50)*50;
+				}
+				else if(num>= 1001 && num<=10000){
+					num = Math.round(num + (num * .1))
+					num = Math.ceil(num/500)*500;
+				}
+				else if(num>= 10001 && num<=100000){
+					num = Math.round(num + (num * .1))
+					num = Math.ceil(num/5000)*5000;
+				}
+				else if(num>= 100001 && num<=1000000){
+					num = Math.round(num + (num * .1))
+					num = Math.ceil(num/25000)*25000;
+				}
+				else if(num>= 1000001 && num<=10000000){
+					num = Math.round(num + (num * .05))
+					num = Math.ceil(num/500000)*500000;
+				}
+				else if(num>= 10000001 && num<=100000000){
+					num = Math.round(num + (num * .05))
+					num = Math.ceil(num/5000000)*5000000;
+				}
+				else if(num>= 100000001 && num<=1000000000){
+					num = Math.round(num + (num * .05))
+					num = Math.ceil(num/50000000)*50000000;
+				}
+				return num
 			}
 		});
     }
