@@ -121,7 +121,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 							exp1 = v.split(" ")[0].slice(1) + " IS Null"
 						}else{
 							exp = exp + " AND " + v;
-							exp1 = exp1 + " AND " + v.split(" ")[0].slice(1) + " IS Null";
+							exp1 = exp1 + " OR " + v.split(" ")[0].slice(1) + " IS Null";
 						}	
 					}	
 				}));
