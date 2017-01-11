@@ -1,0 +1,203 @@
+﻿<!--This HTML is used in the render function to build the elements within the plugin. The render function first creats a
+Dijit ContentPane to hold all the elements. The ContentPane is assigned a dynamic id upon creation. The render function
+takes the ContentPane id and prepends it to every element with a declared id in this HTML before the elements are created.
+The unique ContentPane id makes all the element ids unique and prevents duplicate id errors in split screen mode.-->
+
+<!--Opening view of the app. Give a little background and instructions to get started-->
+<!--<div id='be_mainAccordWrap' class='be_mainAccordWrap'>-->
+<div id='getHelpBtnWrap' class='sty_getHelpBtnWrap'>
+	<div id='getHelpBtn' class='sty_getHelpBtn'>Start Using Source Protection Explorer</div>
+</div>
+<div id='mainAccord' class='sty_flex1 sty_hide'>
+	<h3 id='hbbHeader'>Filter Cities by Source Watershed Attributes</h3>  
+	<div id='filterCitiesWrap' class='be_sectionWrap'>
+		<div class='sty_blueHeader'><span id='basinCnt' style='font-weight:bold;'></span> of 469 Cities Selected</div>
+		<div class='se_filterWrap'>
+			<div class='sty_underlineHeader'>Filter Cities by Pollutant Yield in Source Watershed<img src='plugins/water_security/images/info.png' alt='show climate info' class='sty_infoIcon' id='-infoPollu'></div> 
+			<div class='sty_cbRangeWrap sty_topMargin'>
+				<!-- Sediment -->
+				<div class='sty_cbRangeWrap'>
+					<div class='sty_cbWrap'><div class='sty_cbLabel'><input type='checkbox' class='sty_cb' value='sed_yield'>Sediment <span id='sed_yield-range'></span> <span id='sed_yield-unit' class='sty_hide'> tonnes/km<sup>2</sup>/year)</span></div></div>
+					<div class='sty_rangeWrap sty_hide'>
+						<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'>0</div>	
+						<div id='-sed_yield' class='be_rslide'></div>
+						<div class='sty_rightSlider'>345<img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'></div>	
+					</div>	
+				</div>
+				<!-- Phosphorus -->
+				<div class='sty_cbRangeWrap'>
+					<div class='sty_cbWrap'><div class='sty_cbLabel'><input type='checkbox' class='sty_cb' value='p_yield'>Phosphorus <span id='p_yield-range'></span> <span id='p_yield-unit' class='sty_hide'> kg/km<sup>2</sup>/year)</span></div></div>
+					<div class='sty_rangeWrap  sty_hide'>
+						<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+						<div id='-p_yield' class='be_rslide'></div>
+						<div class='sty_rightSlider'>360<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div class='se_filterWrap'>
+			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Sediment in Source Watershed<img src='plugins/water_security/images/info.png' alt='show pollution reduction info' class='sty_infoIcon' id='-infoRedPol'></div>
+			<div class='sty_flexRow sty_1stIndent sty_topMargin'>Reduction Target:
+				<div class='sty_flexRowCenter se_btnWrap se_perFil'> 
+					<div class='sty_togBtn sty_togBtnSel' id='-none-sed'>None</div>
+					<div class='sty_togBtn' id='-10-sed'>10%</div>
+					<div class='sty_togBtn' id='-20-sed'>20%</div>
+					<div class='sty_togBtn' id='-30-sed'>30%</div>				
+				</div>
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Total Cost to Reduce Sediment<br>
+				<span id='cost_Sum_sed-range'></span> USD/year)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_Sum_sed' class='be_rslide'></div>
+				<div class='sty_rightSlider'>$500 million<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Per Capita Cost to Reduce Sediment<br>
+				<span id='cost_PP_sed-range'></span> USD/person/year)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_PP_sed' class='be_rslide'></div>
+				<div class='sty_rightSlider'>$2,500<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Cost to Reduce Sediment Relative to GDP<br>
+				<span id='cost_pctGDP_sed-range'></span>%)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_pctGDP_sed' class='be_rslide'></div>
+				<div class='sty_rightSlider'>10%<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+		</div>
+		<div class='se_filterWrap'>	
+			<div class='sty_underlineHeader'>Filter Cities by Potential to Reduce Phosphorus in Source Watershed<img src='plugins/water_security/images/info.png' alt='show pollution reduction info' class='sty_infoIcon' id='-infoRedPol'></div>
+			<div class='sty_flexRow sty_1stIndent sty_topMargin'>Reduction Target:
+				<div class='sty_flexRowCenter se_btnWrap se_perFil'>
+					<div class='sty_togBtn sty_togBtnSel' id='-none-p'>None</div>
+					<div class='sty_togBtn' id='-10-p'>10%</div>
+					<div class='sty_togBtn' id='-20-p'>20%</div>
+					<div class='sty_togBtn' id='-30-p'>30%</div>					
+				</div>
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Total Cost to Reduce Phosphorus<br>
+				<span id='cost_Sum_p-range'></span> USD/year)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_Sum_p' class='be_rslide'></div>
+				<div class='sty_rightSlider'>$3 billion<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Per Capita Cost to Reduce Phosphorus<br>
+				<span id='cost_PP_p-range'></span> USD/person/year)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_PP_p' class='be_rslide'></div>
+				<div class='sty_rightSlider'>$20,000<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+			<div class='sty_rangeWrap sty_hide'>
+				Cost to Reduce Phosphorus Relative to GDP<br>
+				<span id='cost_pctGDP_p-range'></span>%)<br>
+				<div class='sty_leftSlider'><img class='sty_goodBadPics' src='plugins/water_security/images/green.png' alt='green circle'>0</div>	
+				<div id='-cost_pctGDP_p' class='be_rslide'></div>
+				<div class='sty_rightSlider'>500%<img class='sty_goodBadPics' src='plugins/water_security/images/red.png' alt='red circle'></div>	
+			</div>
+		</div>
+	</div>	
+	<h3 id='citySelSection' class='be_largeHeader'>View Cities and Source Watersheds</h3>
+	<div>
+		<div class='sty_blueHeader' id='selectCityHeader' style='font-weight:bold;'>Click map to select a city</div>
+		<div class='sty_blueHeader sty_hide' id='citySelectedHeader' style='font-weight:bold; margin-top:6px; margin-bottom:5px;'><span id='sc'></span> - <span id='zoomToWs' class='wf_zoomToText'> Zoom to Watersheds</span></div>
+		<div id='chartWrap' class='sty_hide'>
+			<div class='se_groupCharts'>
+				<div class='sty_headerUnderlineCentered'>Area and Cost for Conservation Activities</div>	
+				<div class='sty_flexRow'>
+					<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Area (km<sup>2</sup>)</div>
+					<div class='sty_headerCentered sty_flex1' style='font-size:1.3rem;'>Cost (USD/year)</div>
+				</div>
+				<div class='sty_flexRow sty_topMargin' style='align-items:stretch; '>
+					<div id='areaCh' class='sty_flex1'>	
+						<canvas id='areaChart' height='300'></canvas>
+					</div>
+					<div id='areaNd' class='sty_flex1 se_noData sty_hide' style='margin-left:4px;'>No area data<br>for current selection</div>
+					<div id='costCh' class='sty_flex1' style='margin-right:4px; margin-left:2px;'>
+						<canvas id='costChart' height='300'></canvas>
+					</div>
+					<div id='costNd' class='sty_flex1 se_noData sty_hide'>No cost data<br>for current selection</div>
+				</div>
+				<div class='sty_flexRowCenter se_legendSpace'>
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_agLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Agricultural BMPs</div>
+					</div>	
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_proLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Forest protection</div>
+					</div>
+					<div class='sty_flexRowCenter sty_flex1'>
+						<div class='se_lgndItem se_refLgnd sty_flex1'></div><div class='se_smallFont sty_flex4'>Reforestation</div>
+					</div>	
+				</div>	
+				<div class='sty_flexRowCenter'>Pollutant:
+					<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
+						<div class='sty_togBtn sty_togBtnSel' id='-_sed'>Sediment</div>
+						<div class='sty_togBtn' id='-_p'>Phosphorus</div>
+					</div>
+				</div>
+				<div class='sty_flexRowCenter'>Reduction Target:
+					<div class='sty_flexRowCenter se_btnWrap se_chartSel'>
+						<div class='sty_togBtn sty_togBtnSel' id='-opt10_'>10%</div>
+						<div class='sty_togBtn' id='-opt20_'>20%</div>
+						<div class='sty_togBtn' id='-opt30_'>30%</div>					
+					</div>
+				</div>
+			</div>	
+			<div class='se_groupAtts'>			
+				<div id='se_attWrap' class='se_attWrap'>
+					<div class='se_attLine'><span class='se_attribute'>Estimated city population</span>: <span id='-pop-att' class='se_attSpan'></span></div>
+					<div class='se_attLine'><span class='se_attribute'>Number of surface water sources</span>: <span id='-num_sources-att' class='se_attSpan'></span></div>
+					<div class='se_attLine'><span class='se_attribute'>Phosphorus pollutant yield</span>: <span id='-p_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> kg/km<sup>2</sup>/year</span></div>
+					<div class='se_attLine'><span class='se_attribute'>Sediment pollutant yield</span>: <span id='-sed_yield-att' class='se_attSpan'></span><span class='se_attSpanSm'> tonnes/km<sup>2</sup>/year</span></div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+</div>
+<div id='infoAccord'>
+	<h3 class='infoDoc'>Documentation</h3>
+	<div class='sty_explainWrap'>
+		<p>
+			This app enables users to explore how cities could improve the quality of their intake water by 
+			implementing conservation activities to reduce nonpoint pollution. The app depicts how forest protection, 
+			pastureland reforestation, and agricultural best-management practices (BMPs) can reduce sediment and 
+			phosphorus pollution for surface water intakes for 469 cities.
+		</p>
+		<p>
+			Most cities use water from multiple surface water sources. The data presented here represent average 
+			values across all source watersheds for a given city. Additionally, while many cities also rely upon 
+			groundwater sources, this app focuses only on surface water supplies. For more details on methodology, 
+			please refer to the <a href='plugins/water_security/images/MethodsDocumentation.pdf' target='_blank'>data documentation</a>
+			provided on this site.
+		</p>
+		<p>
+			Note that the cities mapped here include only those with explicitly surveyed water sources. In the report, 
+			<a href='http://www.nature.org/beyondthesource' target='_blank'>Beyond the Source</a>, we additionally model 
+			potential surface water sources for more than 3,500 additional cities.
+		</p>
+		<p>
+	</div> 
+	<h3 class='infoPollu'>Pollutant Load in Source Watersheds</h3>
+	<div class='sty_explainWrap'>
+		<p>
+			Nonpoint pollution includes a wide array of pollutant types but two pollutants have particular relevance 
+			for urban source water protection: sediment and nutrients.
+		</p>
+		<p>
+			In practice, phosphorus and nitrogen loading are highly spatially correlated at large scales and the 
+			phosphorus results presented here are indicative of similar global spatial patterns for nitrogen loading.
+		</p>
+	</div>
+	<h3 class='infoRedPol'>Pollution Reduction Potential</h3>
+	<div class='sty_explainWrap'>
+		<p>
+			We consider three conservation practices relevant to source water protection: forest protection, pastureland 
+			reforestation and agricultural BMPs. For a given watershed, we estimate the area and cost of the optimal portfolio 
+			of conservation activities needed to reach a given reduction target for sediment or phosphorus (10%, 20%, or 30% 
+			reduction relative to baseline conditions). 
+		</p>
+	</div>			
+</div>	
