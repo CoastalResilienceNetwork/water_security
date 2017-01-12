@@ -11,7 +11,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
 					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
 				});
-				// update accordians on window resize - map resize is much cleaner than window resize
+				// update accordians on window resize
 				var doit;
 				$(window).resize(function(){
 					clearTimeout(doit);
