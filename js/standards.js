@@ -11,14 +11,14 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
 					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
 				});
-				// update accordians on window resize 
+				// update accordians on window resize
 				var doit;
 				$(window).resize(function(){
 					clearTimeout(doit);
 					doit = setTimeout(function() {
 						t.standards.updateAccord(t);
 					}, 100);
-				});								
+				});									
 				// leave the get help section
 				$('#' + t.id + 'getHelpBtn').on('click',lang.hitch(t,function(c){
 					if ( $('#' + t.id + 'mainAccord').is(":visible") ){
@@ -59,7 +59,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
 				$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});	
 				$( "#" + t.id + "mainAccord" ).accordion( "option", "active", ma );		
-				$( "#" + t.id + "infoAccord" ).accordion( "option", "active", ia );					
+				$( "#" + t.id + "infoAccord" ).accordion( "option", "active", ia );				
 			},
 			numberWithCommas: function(x){
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

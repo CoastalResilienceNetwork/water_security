@@ -242,3 +242,9 @@
 .se_groupAtts{
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); padding-bottom:4px; margin-bottom:6px; width:353px; padding:4px 8px;
 }
+.se_zoomToText{
+	font-size:1.3rem; color:blue !important; cursor:pointer;
+}	
+.se_zoomToText:hover{
+    color:#21658c !important;
+}
