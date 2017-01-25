@@ -7,8 +7,10 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
         return declare(null, {
 			createChart: function(t){
 				// Get inital selections
-				t.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
-				t.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
+				if (t.obj.stateSet == "no"){
+					t.obj.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
+					t.obj.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
+				}
 				// Set global chart variables
 				Chart.defaults.global.tooltips.enabled = false;
 				Chart.defaults.global.legend.display = false;
@@ -81,15 +83,15 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 					type: 'bar', data: { labels: [""], datasets: t.costDS }, options: costOpt
 				});
 				$('#' + t.id + ' .se_chartSel div').on('click',lang.hitch(t,function(c){
-					t.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
-					t.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
+					t.obj.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
+					t.obj.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
 					t.chartjs.updateCharts(t);
 				}));
 			},
 			updateCharts: function(t){
 				var areaMax = 0
 				$.each(t.areaDS,function(i,v){
-					var field = t.selPer + v.label + t.selPol;
+					var field = t.obj.selPer + v.label + t.obj.selPol;
 					v.data = [t.atts[field]]
 					if (t.atts[field]){
 						areaMax = areaMax + t.atts[field];
@@ -106,7 +108,7 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 				t.myAreaChart.config.options.scales.yAxes[0].ticks.max = m;
 				var costMax = 0;
 				$.each(t.costDS,function(i,v){
-					var field = t.selPer + v.label + t.selPol;
+					var field = t.obj.selPer + v.label + t.obj.selPol;
 					v.data = [t.atts[field]]
 					if (t.atts[field]){
 						costMax = costMax + t.atts[field];

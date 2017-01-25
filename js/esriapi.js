@@ -28,7 +28,6 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 				t.dynamicLayer.on("load", lang.hitch(t, function () { 			
 					t.layersArray = t.dynamicLayer.layerInfos;
 					// Start with empty expressions
-					t.selCity = "";
 					t.sed_yield = ""; 
 					t.p_yield = "";
 					t.cost_Sum_sed = "";
@@ -38,8 +37,57 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 					t.cost_PP_p = "";
 					t.cost_pctGDP_p = "";
 					t.wsDef = "";
-					t.clicks.layerDefsUpdate(t);
 					t.map.setMapCursor("pointer");
+					// Save and Share 
+					if (t.obj.stateSet == "yes"){
+						console.log(this.obj)
+						//extent
+						var extent = new Extent(t.obj.extent.xmin, t.obj.extent.ymin, t.obj.extent.xmax, t.obj.extent.ymax, new SpatialReference({ wkid:4326 }))
+						t.map.setExtent(extent, true);
+						// accordion visibility
+						$('#' + t.id + t.obj.accordVisible).show();
+						$('#' + t.id + t.obj.accordHidden).hide();
+						$('#' + t.id + 'getHelpBtn').html(t.obj.buttonText);
+						t.standards.updateAccord(t);
+						$('#' + t.id + t.obj.accordVisible).accordion( "option", "active", t.obj.accordActive );
+						//  city click
+						$('#' + t.id + ' .se_chartSel div').removeClass('sty_togBtnSel')
+						$('#' + t.id + ' .se_chartSel div').each(lang.hitch(t,function(i,v){
+							if( v.id == t.id + "-" + t.obj.selPol || v.id == t.id + "-" + t.obj.selPer ){
+								$('#' + v.id).addClass('sty_togBtnSel')
+							}
+						}))
+						if (t.obj.selCity.length > 0){
+							var q = new Query();
+							q.where = t.obj.selCity;
+							console.log(t.obj.selCity)
+							t.selCityFL.selectFeatures(q,esri.layers.FeatureLayer.SELECTION_NEW);
+						}
+						// benefit checkboxes and sliders
+						$.each(t.obj.checkedYield,lang.hitch(t,function(i,v){
+							$('#' + t.id + 'yieldCbs input').each(lang.hitch(t,function(j,w){
+								if ( v[0] == $(w).val() ){
+									$('#' + t.id + '-' + v[0]).slider('values', v[1]);
+									$(w).trigger('click')
+								}
+							}))	
+						}))
+						$.each(t.obj.reduceSliders,lang.hitch(t,function(i,v){
+							$('#' + t.id + ' .be_rslide').each(lang.hitch(t,function(j,w){
+								var wid = "-" + w.id.split("-")[1]
+								if ( v[0] == wid ){
+									$('#' + t.id + v[0]).slider('values', v[1]);
+								}
+							}))	
+						}))
+						$.each(t.obj.percentBtns,lang.hitch(t,function(i,v){
+							$('#' + t.id + v).trigger('click')
+						}));	
+						t.obj.stateSet = "no";
+					}else{
+						t.clicks.layerDefsUpdate(t);
+					}
+					
 				}));	
 				
 				var relatedQuery = new RelationshipQuery();
@@ -60,8 +108,8 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						$('#' + t.id + 'selectCityHeader').hide();
 						$('#' + t.id + 'sc').html(t.atts.City_Name);
 						$('#' + t.id + 'citySelectedHeader').show();
-						t.selCity = "OBJECTID = " + t.atts.OBJECTID;
-						t.layerDefinitions[t.selectedCity] = t.selCity
+						t.obj.selCity = "OBJECTID = " + t.atts.OBJECTID;
+						t.layerDefinitions[t.selectedCity] = t.obj.selCity
 						t.dynamicLayer.setLayerDefinitions(t.layerDefinitions);
 						if (index == -1) {
 							t.obj.visibleLayers.push(t.selectedCity);
@@ -107,7 +155,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						$('#' + t.id + 'citySelSection').trigger('click');						
 						$('#' + t.id + 'chartWrap').slideDown();						
 					}else{
-						t.selCity = "";
+						t.obj.selCity = "";
 						t.wsDef = "";
 						if (index > -1) {
 							t.obj.visibleLayers.splice(index, 1);						

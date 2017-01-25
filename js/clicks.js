@@ -110,11 +110,13 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 			},	
 			layerDefsUpdate: function(t){
 				// Get array of all layer defs
-				t.exp = [t.sed_yield, t.p_yield, t.cost_Sum_sed, t.cost_PP_sed, t.cost_pctGDP_sed, t.cost_Sum_p, t.cost_PP_p, t.cost_pctGDP_p]
+				if (t.obj.stateSet == "no"){
+					t.obj.exp = [t.sed_yield, t.p_yield, t.cost_Sum_sed, t.cost_PP_sed, t.cost_pctGDP_sed, t.cost_Sum_p, t.cost_PP_p, t.cost_pctGDP_p]
+				}	
 				var exp = "";
 				var exp1 = "";
 				// Create array of layer defs that have text (exp) and create a null selector layer def array for the same field (exp1)
-				$.each(t.exp, lang.hitch(t,function(i, v){
+				$.each(t.obj.exp, lang.hitch(t,function(i, v){
 					if (v.length > 0){
 						if (exp.length == 0){
 							exp = v;
@@ -131,7 +133,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					$('#' + t.id + 'basinCnt').html("0"); 
 					t.obj.visibleLayers = [t.cities];
 					// Add city selected by map click if present
-					if (t.selCity.length > 0){
+					if (t.obj.selCity.length > 0){
 						t.obj.visibleLayers.push(t.selectedCity)
 					}
 					if (t.wsDef.length > 0){
@@ -147,7 +149,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					q.where = exp1;
 					qt.executeForCount(q,lang.hitch(t,function(count){
 						// Filtered and selcted cities get exp layer def no matter what
-						t.layerDefinitions[t.selectedCity] = t.selCity;
+						t.layerDefinitions[t.selectedCity] = t.obj.selCity;
 						t.layerDefinitions[t.watersheds] = t.wsDef;
 						t.layerDefinitions[t.filteredCities] = exp;
 						// If there are null values selected, show the no data for cities layer and apply exp1
@@ -160,7 +162,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 							t.obj.visibleLayers = [t.cities,t.filteredCities];		
 						}
 						// Add city selected by map click if present
-						if (t.selCity.length > 0){
+						if (t.obj.selCity.length > 0){
 							t.obj.visibleLayers.push(t.selectedCity)
 						}
 						if (t.wsDef.length > 0){
