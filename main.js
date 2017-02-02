@@ -25,7 +25,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		// Called after initialize at plugin startup (why all the tests for undefined). Also called after deactivate when user closes app by clicking X. 
 		hibernate: function () {
 			if (this.appDiv != undefined){
-				this.map.removeLayer(this.dynamicLayer);
+				//this.map.removeLayer(this.dynamicLayer);
+				this.dynamicLayer.setVisibleLayers([-1])
 			}
 			this.open = "no";
 		},
@@ -37,7 +38,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				// Hide the print button until a hex has been selected
 				$(this.printButton).hide();
 			}else{
-				this.map.addLayer(this.dynamicLayer);
+				//this.map.addLayer(this.dynamicLayer);
 				this.dynamicLayer.setVisibleLayers(this.obj.visibleLayers);
 				$('#' + this.id).parent().parent().css('display', 'flex');
 				this.standards.updateAccord(this);	
@@ -47,7 +48,8 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		// Called when user hits the minimize '_' icon on the pluging. Also called before hibernate when users closes app by clicking 'X'.
 		deactivate: function () {
 			if (this.appDiv != undefined){
-				this.map.removeLayer(this.dynamicLayer);
+				//this.map.removeLayer(this.dynamicLayer);
+				this.dynamicLayer.setVisibleLayers([-1])
 			}	
 			this.open = "no";
 		},	

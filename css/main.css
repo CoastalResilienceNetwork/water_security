@@ -8,21 +8,9 @@
 .be_leftSliderLabel{
 	display:inline-block; margin-right:9px; font-size:10pt;
 }
-.be_slider{
-	width:100px; display:inline-block;
-}
-.ui-slider-horizontal {
-	height: 5px;
-}
-.ui-slider-horizontal .ui-slider-handle {
-	height:15px; width:15px; margin-top:-1px;
-}
-.ui-widget-header {
-	background: #b8e1fc !important;
-}	
-.be_rslide{
-	width:160px; display:inline-block; margin-bottom:2px;
-}	
+
+	
+
 .be_updown{
 	display:inline-block; width:10px; height:10px; margin:0 4px -1px 4px; 
 }	
