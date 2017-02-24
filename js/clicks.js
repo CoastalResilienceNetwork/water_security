@@ -25,24 +25,17 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				$('#' + t.id + '-cost_pctGDP_p').slider({range:true, min:0, max:500, values:[0,500], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
 
 				// Handle sediment and phosphorus CB clicks
-				$('#' + t.id + 'filterCitiesWrap .sty_cbWrap').on('click',lang.hitch(t,function(c){
-					var val = "";
-					// If they click a label, toggle the checkbox. Otherwise, use the CB value 
-					if (c.target.checked == undefined){
-						$(c.currentTarget.children[0].children[0]).prop("checked", !$(c.currentTarget.children[0].children[0]).prop("checked") )	
-						val = $(c.currentTarget.children[0].children[0]).val()
-					}else{
-						val = c.target.value;
-					}
+				$('#' + t.id + 'filterCitiesWrap input').on('click',lang.hitch(t,function(c){
+					var val = c.target.value;
 					// If checked, show slider and trigger change so the layer defs are applied
-					if ($(c.currentTarget.children[0].children[0]).prop('checked') === true){
-						$(c.currentTarget).parent().find('.sty_rangeWrap').slideDown();
+					if (c.target.checked == true){
+						$(c.currentTarget).parent().parent().find('.slider-container').slideDown().css("display","flex");
 						var values = $('#' + t.id + '-' + val).slider("option", "values");
 						$('#' + t.id + '-' + val).slider('values', values); 
 					}
 					// If unchecked, hide slider and clear and update associated layer defs 
 					else{
-						$(c.currentTarget).parent().find('.sty_rangeWrap').slideUp();
+						$(c.currentTarget).parent().parent().find('.slider-container').slideUp();
 						t[val] = "";
 						t.clicks.layerDefsUpdate(t);
 						$('#' + t.id + val + '-range').html("")
@@ -50,13 +43,13 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					}	
 				}));	
 				// 10, 20, 30% toggle button clicks
-				$('#' + t.id + ' .se_perFil div').on('click',lang.hitch(t,function(c){
+				$('#' + t.id + ' .se_perFil input').on('click',lang.hitch(t,function(c){
 					// Get percent selected
-					t.per = c.currentTarget.id.split("-")[1]
+					t.per = c.target.value.split("-")[0]
 					// Show and hide range sliders
 					if (t.per == "none"){						
 						// Clear all layer defs associated with sliders in current section and hide sliders
-						$.each( $(c.currentTarget).parent().parent().parent().find('.be_rslide'), lang.hitch(t,function(i,v){
+						$.each( $(c.currentTarget).parent().parent().parent().find('.se_rslide'), lang.hitch(t,function(i,v){
 							var slide = v.id.split("-")[1];
 							t[slide] = "";
 						}));
@@ -65,7 +58,7 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					}else{
 						// Show sliders in current section and and trigger changes to each so the layer defs are applied
 						$(c.currentTarget).parent().parent().parent().find('.sty_rangeWrap').slideDown();
-						$.each( $(c.currentTarget).parent().parent().parent().find('.be_rslide'), lang.hitch(t,function(i,v){
+						$.each( $(c.currentTarget).parent().parent().parent().find('.se_rslide'), lang.hitch(t,function(i,v){
 							var slide = v.id.split("-")[1]; 
 							var values = $('#' + t.id + '-' + slide).slider("option", "values");
 							$('#' + t.id + '-' + slide).slider('values', values); 

@@ -12,7 +12,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Source Protection Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
-		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'custom', width:370, 	
+		hasCustomPrint: true, usePrintPreviewMap: true, previewMapSize: [1000, 550], size:'custom', width:380, 	
 		// First function called when the user clicks the pluging icon. 
 		initialize: function (frameworkParameters) {
 			// Access framework parameters
@@ -48,8 +48,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		// Called when user hits the minimize '_' icon on the pluging. Also called before hibernate when users closes app by clicking 'X'.
 		deactivate: function () {
 			if (this.appDiv != undefined){
-				//this.map.removeLayer(this.dynamicLayer);
-				this.dynamicLayer.setVisibleLayers([-1])
+				//this.dynamicLayer.setVisibleLayers([-1])
 			}	
 			this.open = "no";
 		},	
@@ -80,15 +79,17 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				}));
 				this.obj.reduceSliders = [];
 				this.obj.percentBtns = [];
-				$.each( $('#' + this.id + " .se_perFil .sty_togBtnSel"), lang.hitch(this,function(i,v){
-					var btn = v.id.substring(v.id.indexOf("-")+1,v.id.lastIndexOf("-"))
+				$.each( $('#' + this.id + " .se_perFil input[type=radio]:checked"), lang.hitch(this,function(i,v){
+					var btn = v.value.split("-")[0]
+					console.log(btn)
 					if (btn != "none"){
 						this.obj.percentBtns.push( v.id.substring(v.id.indexOf("-")) )
-						$.each( $('#' + v.id).parent().parent().parent().find('.be_rslide'), lang.hitch(this,function(j,w){
+						$.each( $('#' + v.id).parent().parent().parent().find('.se_rslide'), lang.hitch(this,function(j,w){
 							var slide = "-" + w.id.split("-")[1]; 
 							var values = $('#' + w.id).slider("option", "values");
 							this.obj.reduceSliders.push([slide, values])
-						})) 
+						}))
+						console.log(this.obj.percentBtns) 
 					}	
 				}))				
 				//extent
@@ -127,11 +128,13 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			this.id = this.appDiv.id
 			dom.byId(this.container).appendChild(this.appDiv.domNode);					
 			$('#' + this.id).parent().addClass('sty_flexColumn')
+			$('#' + this.id).addClass('accord waterSecurity')
 			if (this.obj.stateSet == "no"){
 				$('#' + this.id).parent().parent().css('display', 'flex')
 			}
 			// Get html from content.html, prepend appDiv.id to html element id's, and add to appDiv
-			var idUpdate = content.replace(/id='/g, "id='" + this.id);	
+			var idUpdate0 = content.replace(/for="/g, 'for="' + this.id);	
+			var idUpdate = idUpdate0.replace(/id="/g, 'id="' + this.id);
 			$('#' + this.id).html(idUpdate);
 			// Call standards startup
 			this.standards.startUp(this);

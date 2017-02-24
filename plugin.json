@@ -1,8 +1,5 @@
 {
     "css": [
-		"//cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css",
-		"plugins/water_security/css/barChart.css",
-		"plugins/water_security/css/toggleButtons.css",
 		"plugins/water_security/css/main.css"
     ],
     "use": {

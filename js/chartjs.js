@@ -8,8 +8,8 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 			createChart: function(t){
 				// Get inital selections
 				if (t.obj.stateSet == "no"){
-					t.obj.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
-					t.obj.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
+					t.obj.selPol = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[0].value
+					t.obj.selPer = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[1].value
 				}
 				// Set global chart variables
 				Chart.defaults.global.tooltips.enabled = false;
@@ -82,9 +82,9 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 				t.myCostChart = new Chart(ctxCost, {
 					type: 'bar', data: { labels: [""], datasets: t.costDS }, options: costOpt
 				});
-				$('#' + t.id + ' .se_chartSel div').on('click',lang.hitch(t,function(c){
-					t.obj.selPol = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[0].id.split('-')[1]
-					t.obj.selPer = $('#' + t.id + ' .se_chartSel .sty_togBtnSel')[1].id.split('-')[1]
+				$('#' + t.id + ' .se_chartSel input').on('click',lang.hitch(t,function(c){
+					t.obj.selPol = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[0].value;
+					t.obj.selPer = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[1].value;
 					t.chartjs.updateCharts(t);
 				}));
 			},
