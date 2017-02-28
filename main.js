@@ -81,7 +81,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 				this.obj.percentBtns = [];
 				$.each( $('#' + this.id + " .se_perFil input[type=radio]:checked"), lang.hitch(this,function(i,v){
 					var btn = v.value.split("-")[0]
-					console.log(btn)
 					if (btn != "none"){
 						this.obj.percentBtns.push( v.id.substring(v.id.indexOf("-")) )
 						$.each( $('#' + v.id).parent().parent().parent().find('.se_rslide'), lang.hitch(this,function(j,w){
@@ -89,7 +88,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 							var values = $('#' + w.id).slider("option", "values");
 							this.obj.reduceSliders.push([slide, values])
 						}))
-						console.log(this.obj.percentBtns) 
 					}	
 				}))				
 				//extent

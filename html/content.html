@@ -5,7 +5,8 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 
 <!--Opening view of the app. Give a little background and instructions to get started-->
 <div id="getHelpBtnWrap" class="sty_getHelpBtnWrap">
-	<div id="getHelpBtn" class="sty_getHelpBtn">Start Using Source Protection Explorer</div>
+	<button id="getHelpBtn" class="button button-default">Start Using Source Protection Explorer</button>
+	<!-- <div id="getHelpBtn" class="sty_getHelpBtn">Start Using Source Protection Explorer</div> -->
 </div>
 <div id="mainAccord" class="sty_flex1 sty_hide">
 	<h3 id="hbbHeader">Filter Cities by Source Watershed Attributes</h3>  
@@ -24,7 +25,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 					</label>
 					<div class="slider-container sty_flexRow sty_hide">
 						<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle">0</div>	
-						<div id="-sed_yield" class="se_rslide"></div>
+						<div id="-sed_yield" class="se_rslide slider"></div>
 						<div class="sty_rightSlider">345<img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle"></div>	
 					</div>	
 				</div>
@@ -36,7 +37,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 					</label>
 					<div class="slider-container sty_flexRow sty_hide">
 						<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-						<div id="-p_yield" class="se_rslide"></div>
+						<div id="-p_yield" class="se_rslide slider"></div>
 						<div class="sty_rightSlider">360<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 					</div>	
 				</div>
@@ -57,7 +58,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_Sum_sed-range"></span> USD/year)<br>
 				<div class="slider-container sty_flexRow">
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_Sum_sed" class="se_rslide"></div>
+					<div id="-cost_Sum_sed" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">$500 million<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>
 			</div>
@@ -66,7 +67,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_PP_sed-range"></span> USD/person/year)<br>
 				<div class="slider-container sty_flexRow">
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_PP_sed" class="se_rslide"></div>
+					<div id="-cost_PP_sed" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">$2,500<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>	
 			</div>
@@ -75,7 +76,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_pctGDP_sed-range"></span>%)<br>
 				<div class="slider-container sty_flexRow">
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_pctGDP_sed" class="se_rslide"></div>
+					<div id="-cost_pctGDP_sed" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">10%<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>
 			</div>
@@ -95,7 +96,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_Sum_p-range"></span> USD/year)<br>
 				<div class="slider-container sty_flexRow">
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_Sum_p" class="se_rslide"></div>
+					<div id="-cost_Sum_p" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">$3 billion<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>	
 			</div>
@@ -104,7 +105,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_PP_p-range"></span> USD/person/year)<br>
 				<div class="slider-container sty_flexRow">
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_PP_p" class="se_rslide"></div>
+					<div id="-cost_PP_p" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">$20,000<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>	
 			</div>
@@ -113,7 +114,7 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 				<span id="cost_pctGDP_p-range"></span>%)<br>
 				<div class="slider-container sty_flexRow">	
 					<div class="sty_leftSlider"><img class="sty_goodBadPics" src="plugins/water_security/images/green.png" alt="green circle">0</div>	
-					<div id="-cost_pctGDP_p" class="se_rslide"></div>
+					<div id="-cost_pctGDP_p" class="se_rslide slider"></div>
 					<div class="sty_rightSlider">500%<img class="sty_goodBadPics" src="plugins/water_security/images/red.png" alt="red circle"></div>	
 				</div>	
 			</div>
@@ -158,10 +159,6 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 						<input type="radio" id="pol1" name="pol" value="_sed" checked/><label for="pol1">Sediment</label>
 						<input type="radio" id="pol2" name="pol" value="_p"/><label for="pol2">Phosphorus</label>
 					</div>
-					<!--<div class="sty_flexRowCenter se_btnWrap se_chartSel">
-						<div class="sty_togBtn sty_togBtnSel" id="-_sed">Sediment</div>
-						<div class="sty_togBtn" id="-_p">Phosphorus</div>
-					</div>-->
 				</div>
 				<div class="sty_flexRowCenter">Reduction Target:
 					<div class="toggle-btn se_chartSel" style="width:150px;">
@@ -169,11 +166,6 @@ The unique ContentPane id makes all the element ids unique and prevents duplicat
 						<input type="radio" id="rtc2" name="rtc" value="opt20_"/><label for="rtc2">20%</label>
 						<input type="radio" id="rtc3" name="rtc" value="opt30_"/><label for="rtc3">30%</label>
 					</div>
-					<!--<div class="sty_flexRowCenter se_btnWrap se_chartSel">
-						<div class="sty_togBtn sty_togBtnSel" id="-opt10_">10%</div>
-						<div class="sty_togBtn" id="-opt20_">20%</div>
-						<div class="sty_togBtn" id="-opt30_">30%</div>					
-					</div>-->
 				</div>
 			</section>	
 			<section class="se_groupAtts">			

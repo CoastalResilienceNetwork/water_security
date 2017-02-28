@@ -51,7 +51,6 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						t.standards.updateAccord(t);
 						$('#' + t.id + t.obj.accordVisible).accordion( "option", "active", t.obj.accordActive );
 						//  city click
-						//$('#' + t.id + ' .se_chartSel div').removeClass('sty_togBtnSel')
 						$('#' + t.id + ' .se_chartSel input').each(lang.hitch(t,function(i,v){
 							if( v.id == t.id + "-" + t.obj.selPol || v.id == t.id + "-" + t.obj.selPer ){
 								$('#' + v.id).prop("checked", true)

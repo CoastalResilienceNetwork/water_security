@@ -10,6 +10,10 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				$( function() {
 					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
 					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
+					$( '#' + t.id + 'mainAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'infoAccord > div' ).addClass("accord-body");
+					$( '#' + t.id + 'infoAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'mainAccord > div' ).addClass("accord-body");
 				});
 				// update accordians on window resize
 				var doit;
@@ -44,12 +48,6 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
 					$('#' + t.id + 'getHelpBtn').html('Back to Source Protection Explorer');
 				}));
-				// Handle Class changes on all togBtn clicks
-				$('#' + t.id + ' .sty_togBtn').on('click',function(c){		
-					$(c.currentTarget).parent().find('.sty_togBtn').removeClass('sty_togBtnSel');
-					$(c.currentTarget).addClass('sty_togBtnSel');
-				});
-				
 			},
 			updateAccord: function(t){
 				var ma = $( "#" + t.id + "mainAccord" ).accordion( "option", "active" );
