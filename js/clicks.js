@@ -8,21 +8,29 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 			clickListener: function(t){
 				// Instantiate range sliders
 				// Sediment range slider
-				$('#' + t.id + '-sed_yield').slider({range:true, min:0, max:345, values:[0,345], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-sed_yield').slider({range:true, min:0, max:345, values:[0,345], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Forest Loss range slider
-				$('#' + t.id + '-p_yield').slider({range:true, min:0, max:360, values:[0,360], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-p_yield').slider({range:true, min:0, max:360, values:[0,360], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Cost Reduce Sediment
-				$('#' + t.id + '-cost_Sum_sed').slider({range:true, min:0, max:500000000, values:[0,500000000], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_Sum_sed').slider({range:true, min:0, max:500000000, values:[0,500000000], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Per Capita Cost to Reduce Sediment
-				$('#' + t.id + '-cost_PP_sed').slider({range:true, min:0, max:2500, values:[0,2500], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_PP_sed').slider({range:true, min:0, max:2500, values:[0,2500], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Cost to Reduce Sediment Relative to GDP
-				$('#' + t.id + '-cost_pctGDP_sed').slider({range:true, min:0, max:10, values:[0,10], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_pctGDP_sed').slider({range:true, min:0, max:10, values:[0,10], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Cost Reduce Phosphorus
-				$('#' + t.id + '-cost_Sum_p').slider({range:true, min:0, max:3000000000, values:[0,3000000000], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_Sum_p').slider({range:true, min:0, max:3000000000, values:[0,3000000000], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Per Capita Cost to Reduce Phosphorus
-				$('#' + t.id + '-cost_PP_p').slider({range:true, min:0, max:20000, values:[0,20000], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_PP_p').slider({range:true, min:0, max:20000, values:[0,20000], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 				// Cost to Reduce Phosphorus Relative to GDP
-				$('#' + t.id + '-cost_pctGDP_p').slider({range:true, min:0, max:500, values:[0,500], change:function(event,ui){t.clicks.sliderChange(event,ui,t)}});
+				$('#' + t.id + '-cost_pctGDP_p').slider({range:true, min:0, max:500, values:[0,500], 
+					change:function(event,ui){t.clicks.sliderChange(event,ui,t)}, slide:function(event,ui){t.clicks.sliderSlide(event,ui,t)} });
 
 				// Handle sediment and phosphorus CB clicks
 				$('#' + t.id + 'filterCitiesWrap input').on('click',lang.hitch(t,function(c){
@@ -67,6 +75,23 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				}));		
 			},
 			// Handle range slider changes
+			sliderSlide: function( event, ui, t ){
+				// Show range values selected
+				var att  = event.target.id.split("-").pop()
+				t.maxSelected = "no";
+				var low = t.standards.numberWithCommas(ui.values[0])
+				var high = t.standards.numberWithCommas(ui.values[1])				
+				var grtr = "";
+				if (t.maxSelected == "yes"){
+					grtr = ">"
+				}	
+				if (low == high){						
+					$('#' + t.id + att + '-range').html("(" + low);
+				}else{
+					$('#' + t.id + att + '-range').html("(" + low + " - " + grtr + high);
+				}
+				$('#' + t.id + att + '-unit').css('display', 'inline-block');
+			},
 			sliderChange: function( event, ui, t ){
 				var att  = event.target.id.split("-").pop()
 				t.maxSelected = "no";
@@ -87,7 +112,6 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 					}
 				}
 				t.clicks.layerDefsUpdate(t);
-				// Show range values selected
 				var low = t.standards.numberWithCommas(ui.values[0])
 				var high = t.standards.numberWithCommas(ui.values[1])				
 				var grtr = "";
