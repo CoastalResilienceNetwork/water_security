@@ -5,10 +5,10 @@ require({
 // Bring in dojo and javascript api classes as well as varObject.json, js files, and content.html
 define([
 	"dojo/_base/declare", "framework/PluginBase", "dijit/layout/ContentPane", "dojo/dom", "dojo/dom-style", "dojo/dom-geometry", "dojo/_base/lang", "dojo/text!./obj.json", 
-	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/barChart', './js/horizontalBar', './js/standards', './js/chartjs'
+	"jquery", "dojo/text!./html/content.html", './js/jquery-ui-1.11.2/jquery-ui', './js/esriapi', './js/clicks', './js/standards', './js/chartjs'
 ],
 function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj, 
-			$, content, ui, esriapi, clicks, barChart, hbar, standards, chartjs ) {
+			$, content, ui, esriapi, clicks, standards, chartjs ) {
 	return declare(PluginBase, {
 		// The height and width are set here when an infographic is defined. When the user click Continue it rebuilds the app window with whatever you put in.
 		toolbarName: "Source Protection Explorer", showServiceLayersInLegend: true, allowIdentifyWhenActive: false, rendered: false, resizable: false,
@@ -48,7 +48,7 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 		// Called when user hits the minimize '_' icon on the pluging. Also called before hibernate when users closes app by clicking 'X'.
 		deactivate: function () {
 			if (this.appDiv != undefined){
-				//this.dynamicLayer.setVisibleLayers([-1])
+				this.dynamicLayer.setVisibleLayers([-1])
 			}	
 			this.open = "no";
 		},	
@@ -115,8 +115,6 @@ function ( 	declare, PluginBase, ContentPane, dom, domStyle, domGeom, lang, obj,
 			//$('.basemap-selector').trigger('change', 3);
 			// BRING IN OTHER JS FILES
 			this.standards = new standards();
-			this.barChart = new barChart();
-			this.hbar = new hbar();
 			this.esriapi = new esriapi();
 			this.clicks = new clicks();
 			this.chartjs = new chartjs();

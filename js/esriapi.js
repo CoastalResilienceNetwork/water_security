@@ -153,6 +153,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						}))
 						$('#' + t.id + 'citySelSection').trigger('click');						
 						$('#' + t.id + 'chartWrap').slideDown();						
+						$('#' + t.id + 'se_attWrap').slideDown();						
 					}else{
 						t.obj.selCity = "";
 						t.wsDef = "";
@@ -167,6 +168,7 @@ function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, Query
 						$('#' + t.id + 'citySelectedHeader').hide();
 						$('#' + t.id + 'selectCityHeader').show();
 						$('#' + t.id + 'chartWrap').slideUp();
+						$('#' + t.id + 'se_attWrap').slideUp();
 					}	
 				}));		
 				t.map.on("click", lang.hitch(t, function(evt) {

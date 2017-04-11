@@ -99,6 +99,11 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 				});	
 				var m = t.chartjs.maxNumber(areaMax)
 				if (m == 0){
+					var spid = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[0].id;
+					var splbl = $("label[for='"+ spid +"']").text().toLowerCase();
+					var perid = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[1].id;
+					var perlbl = $("label[for='"+perid+"']").text();
+					$('#' + t.id + 'areaNd').html("A " + perlbl + " " + splbl + " reduction target cannot be achieved here.")
 					$('#' + t.id + 'areaNd').show();
 					$('#' + t.id + 'areaCh').hide();
 				}else{
@@ -116,6 +121,11 @@ function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
 				});	
 				var n = t.chartjs.maxNumber(costMax)
 				if (n == 0){
+					var spid = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[0].id;
+					var splbl = $("label[for='"+ spid +"']").text().toLowerCase();
+					var perid = $('#' + t.id + ' .se_chartSel input[type=radio]:checked')[1].id;
+					var perlbl = $("label[for='"+perid+"']").text();
+					$('#' + t.id + 'costNd').html("A " + perlbl + " " + splbl + " reduction target cannot be achieved here.")
 					$('#' + t.id + 'costNd').show();
 					$('#' + t.id + 'costCh').hide();
 				}else{
