@@ -10,6 +10,10 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				$( function() {
 					$( "#" + t.id + "mainAccord" ).accordion({heightStyle: "fill"}); 
 					$( "#" + t.id + "infoAccord" ).accordion({heightStyle: "fill"});
+					$( '#' + t.id + 'mainAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'infoAccord > div' ).addClass("accord-body");
+					$( '#' + t.id + 'infoAccord > h3' ).addClass("accord-header"); 
+					$( '#' + t.id + 'mainAccord > div' ).addClass("accord-body");
 				});
 				// update accordians on window resize
 				var doit;
@@ -21,35 +25,21 @@ function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, do
 				});									
 				// leave the get help section
 				$('#' + t.id + 'getHelpBtn').on('click',lang.hitch(t,function(c){
-					if ( $('#' + t.id + 'mainAccord').is(":visible") ){
-						$('#' + t.id + 'infoAccord').show();
-						$('#' + t.id + 'mainAccord').hide();
-						$('#' + t.id + 'getHelpBtn').html('Back to Source Protection Explorer');
-						t.standards.updateAccord(t);
-						$('#' + t.id + 'infoAccord .infoDoc').trigger('click');
-					}else{
-						$('#' + t.id + 'infoAccord').hide();
-						$('#' + t.id + 'mainAccord').show();
-						$('#' + t.id + 'getHelpBtn').html('Back to Documentation');
-						t.standards.updateAccord(t);
-					}			
+					$('#' + t.id + 'infoAccord').hide();
+					$('#' + t.id + 'mainAccord').show();
+					$('#' + t.id + 'getHelpBtnWrap').hide();
+					t.standards.updateAccord(t);
 				}));
 				// info icon clicks
 				$('#' + t.id + ' .sty_infoIcon').on('click',lang.hitch(t,function(c){
 					$('#' + t.id + 'mainAccord').hide();
 					$('#' + t.id + 'infoAccord').show();
-					//$('#' + t.id + 'getHelpBtnWrap').show();
+					$('#' + t.id + 'getHelpBtnWrap').show();
 					var ben = c.target.id.split("-").pop();
 					t.standards.updateAccord(t);	
 					$('#' + t.id + 'infoAccord .' + ben).trigger('click');
 					$('#' + t.id + 'getHelpBtn').html('Back to Source Protection Explorer');
 				}));
-				// Handle Class changes on all togBtn clicks
-				$('#' + t.id + ' .sty_togBtn').on('click',function(c){		
-					$(c.currentTarget).parent().find('.sty_togBtn').removeClass('sty_togBtnSel');
-					$(c.currentTarget).addClass('sty_togBtnSel');
-				});
-				
 			},
 			updateAccord: function(t){
 				var ma = $( "#" + t.id + "mainAccord" ).accordion( "option", "active" );
