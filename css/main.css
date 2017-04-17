@@ -90,3 +90,6 @@
 .se_rslide{
 	width:200px;
 }
+.ig-icon{
+	padding:2px !important; height:28px; position:absolute; top:6px; margin-left:4px; z-index:2600;
+}
