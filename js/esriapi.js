@@ -1,9 +1,9 @@
 define([
 	"esri/layers/ArcGISDynamicMapServiceLayer", "esri/geometry/Extent", "esri/SpatialReference", "esri/tasks/query" ,"esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", 
-	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol", "esri/graphic", "dojo/_base/Color", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui', "esri/tasks/RelationshipQuery", "esri/graphicsUtils",
+	"esri/symbols/SimpleLineSymbol", "esri/symbols/SimpleFillSymbol", "esri/graphic", "dojo/_base/Color", "dojo/_base/lang", "dojo/on", "esri/tasks/RelationshipQuery", "esri/graphicsUtils",
 ],
 function ( 	ArcGISDynamicMapServiceLayer, Extent, SpatialReference, Query, QueryTask, declare, FeatureLayer, 
-			SimpleLineSymbol, SimpleFillSymbol, Graphic, Color, lang, on, $, ui, RelationshipQuery, graphicsUtils) {
+			SimpleLineSymbol, SimpleFillSymbol, Graphic, Color, lang, on, RelationshipQuery, graphicsUtils) {
         "use strict";
 
         return declare(null, {

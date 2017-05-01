@@ -1,7 +1,7 @@
 define([
-	"esri/tasks/query", "esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui', './esriapi', "dojo/dom",
+	"esri/tasks/query", "esri/tasks/QueryTask", "dojo/_base/declare", "esri/layers/FeatureLayer", "dojo/_base/lang", "dojo/on", './esriapi', "dojo/dom",
 ],
-function ( Query, QueryTask, declare, FeatureLayer, lang, on, $, ui, esriapi, dom ) {
+function ( Query, QueryTask, declare, FeatureLayer, lang, on, esriapi, dom ) {
         "use strict";
 
         return declare(null, {
