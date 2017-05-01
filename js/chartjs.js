@@ -1,7 +1,7 @@
 define([
-	"dojo/_base/declare", "dojo/_base/lang", "dojo/on", "jquery", './jquery-ui-1.11.2/jquery-ui', './esriapi', "dojo/dom", "./Chart_v2.4.0"
+	"dojo/_base/declare", "dojo/_base/lang", "dojo/on", './esriapi', "dojo/dom", "./Chart_v2.4.0"
 ],
-function ( declare,  lang, on, $, ui, esriapi, dom, Chart ) {
+function ( declare,  lang, on, esriapi, dom, Chart ) {
         "use strict";
 
         return declare(null, {
